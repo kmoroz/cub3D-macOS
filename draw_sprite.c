@@ -6,12 +6,22 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/31 10:31:06 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/15 16:31:18 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/17 12:04:31 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "mlx/mlx.h"
+
+int get_colour(t_texture texture, int x, int y)
+{
+	int	colour;
+
+	colour = *(int*)(texture.addr
+			+ (y * texture.line_length)
+			+ (x * texture.bits_per_pixel / 8));
+	return (colour);
+}
 
 int	animate_sprite(void)
 {
@@ -60,9 +70,10 @@ void	check_and_draw_sprite(t_settings *settings, float x, float y, int count, in
 		texture_offset_y = distance_from_top
 			* (settings->game->texture[index].img_height
 				/ settings->game->sprite->height);
-		tex_colour = settings->game->texture[index]
-			.colour_buffer[(settings->game->texture[index].img_width
-				* texture_offset_y) + texture_offset_x];
+		// tex_colour = settings->game->texture[index]
+		// 	.colour_buffer[(settings->game->texture[index].img_width
+		// 		* texture_offset_y) + texture_offset_x];
+		tex_colour = get_colour(settings->game->texture[index], texture_offset_x, texture_offset_y);
 		if (tex_colour != 16711935 && settings->game->sprite->distance[count]
 			< settings->ray->distance[(int)x])
 			my_mlx_pixel_put(settings->window, x, y, tex_colour);
@@ -199,34 +210,6 @@ void	is_sprite_visible(t_settings *settings, t_sprite *sprite, int count)
 		count++;
 	}
 }
-
-// void animate_sprite(t_settings *settings)
-// {
-// 	static int	animation_offset;
-// 	int	bpp;
-// 	int	size_line;
-// 	int	endian;
-
-// 	if (animation_offset > 50)
-// 	{
-// 		settings->game->texture[SPRITE_TEXTURE].img = mlx_xpm_file_to_image(settings->window->mlx,
-// 		"./textures/animation.xpm", &settings->game->texture[SPRITE_TEXTURE].img_width,
-// 		&settings->game->texture[SPRITE_TEXTURE].img_height);
-// 		settings->game->texture[SPRITE_TEXTURE].colour_buffer = (int *)mlx_get_data_addr(settings->game->texture[SPRITE_TEXTURE].img,
-// 		&bpp, &size_line, &endian);
-// 	}
-// 	if (animation_offset > 100)
-// 	{
-// 		settings->game->texture[SPRITE_TEXTURE].img = mlx_xpm_file_to_image(settings->window->mlx,
-// 		settings->config->sp_texture, &settings->game->texture[SPRITE_TEXTURE].img_width,
-// 		&settings->game->texture[SPRITE_TEXTURE].img_height);
-// 		settings->game->texture[SPRITE_TEXTURE].colour_buffer = (int *)mlx_get_data_addr(settings->game->texture[SPRITE_TEXTURE].img,
-// 		&bpp, &size_line, &endian);
-// 	}
-// 	if (animation_offset > 150)
-// 		animation_offset = 0;
-// 	animation_offset++;
-// }
 
 void	render_sprite(t_settings *settings)
 {

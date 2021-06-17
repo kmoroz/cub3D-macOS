@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/08 13:15:43 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/15 11:38:20 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/17 13:45:39 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # define TWO_PI 6.28318530
 # define FOV_ANGLE (60 * (PI / 180))
 # define WALL_STRIP_WIDTH 10
-# define SCALE_FACTOR 0.2
+# define SCALE_FACTOR 0.4
 # define TILE_SIZE 30
 # define NUM_TEXTURES 6
 # define NO_TEXTURE 0
@@ -99,6 +99,10 @@ typedef struct s_texture
 	int		*colour_buffer;
 	int		img_width;
 	int		img_height;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 }				t_texture;
 
 typedef struct s_sprite
@@ -178,5 +182,6 @@ void	render_sprite(t_settings *settings);
 float	normalise_angle(float angle);
 void	my_mlx_pixel_put(t_window_settings *window, int x, int y, int color);
 int		check_config_file(t_cub config);
+int		get_colour(t_texture texture, int x, int y);
 
 #endif

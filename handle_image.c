@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/18 14:43:28 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/15 15:48:41 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/17 12:04:37 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,9 +175,9 @@ void	draw_wall(t_settings *settings, int count)
 	{
 		distance_from_top = settings->game->wall->wall_top_pixel + (settings->game->wall->wall_strip_height / 2) - (settings->config->y_res / 2);
 		texture_offset_y = distance_from_top * ((float)settings->game->texture[index].img_height / settings->game->wall->wall_strip_height);
-		tex_colour = settings->game->texture[index].colour_buffer[(settings->game->texture[index].img_width * texture_offset_y) + texture_offset_x];
+		//tex_colour = settings->game->texture[index].colour_buffer[(settings->game->texture[index].img_width * texture_offset_y) + texture_offset_x];
+		tex_colour = get_colour(settings->game->texture[index], texture_offset_x, texture_offset_y);
 		my_mlx_pixel_put(settings->window, count, settings->game->wall->wall_top_pixel, tex_colour);
-		//settings->window->colour_buffer[(settings->config->x_res * settings->game->wall->wall_top_pixel) + count] = tex_colour; //0x00FF0000
 		settings->game->wall->wall_top_pixel++;
 	}
 }
