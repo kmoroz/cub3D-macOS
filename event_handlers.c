@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/14 18:47:56 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/10 14:10:45 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/17 16:47:14 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -285,9 +285,6 @@ static void	update_player_position(t_settings *settings, t_player *player)
 
 int	key_press_handler(int keycode, t_settings *settings)
 {
-	settings->game->player->turn_direction = 0;
-	settings->game->player->walk_direction = 0;
-	settings->game->player->sidewalk = 0;
 	if (keycode == KEY_ESC)
 		exit (0);
 	else if (keycode == KEY_A)
@@ -303,5 +300,22 @@ int	key_press_handler(int keycode, t_settings *settings)
 	if (keycode == KEY_S || keycode == KEY_A)
 		settings->game->player->walk_direction = -1;
 	update_player_position(settings, settings->game->player);
+	return (0);
+}
+
+int key_release_handler(int keycode, t_settings *settings)
+{
+	if (keycode == KEY_A)
+		settings->game->player->sidewalk = 0;
+	else if (keycode == KEY_D)
+		settings->game->player->sidewalk = 0;
+	else if (keycode == KEY_LEFT)
+		settings->game->player->turn_direction = 0;
+	else if (keycode == KEY_RIGHT)
+		settings->game->player->turn_direction = 0;
+	if (keycode == KEY_W || keycode == KEY_D)
+		settings->game->player->walk_direction = 0;
+	if (keycode == KEY_S || keycode == KEY_A)
+		settings->game->player->walk_direction = 0;
 	return (0);
 }
