@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/14 17:53:04 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/15 15:59:26 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/17 16:37:38 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,6 +188,13 @@ void	init_player(t_settings *settings)
 	init_player_angle(settings);
 }
 
+int	x_button_hook(t_window_settings *window)
+{
+	printf("\n\U0000274C Red cross pressed. Game terminated. \U0000274C");
+	exit(0);
+	return (0);
+}
+
 void	set_up_game(t_window_settings *window, t_game_state *game, t_cub *config)
 {
 	t_settings *settings;
@@ -213,6 +220,7 @@ void	set_up_game(t_window_settings *window, t_game_state *game, t_cub *config)
 	init_ray(settings);
 	load_textures(settings);
 	init_sprite(settings);
+	mlx_hook(window->window, 17, 1L << 17, &x_button_hook, settings->window);
 	mlx_key_hook(window->window, key_press_handler, settings);
 	mlx_loop_hook(window->mlx, refresh, settings);
 }
