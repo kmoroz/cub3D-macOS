@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/08 13:15:43 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/18 13:19:41 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/18 14:36:41 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,19 +44,20 @@
 # define SPRITE_TEXTURE 4
 # define ANIMATION_TEX 5
 # define ERROR -1
+# define OK 1
 # define EPSILON 0.2
 
 typedef struct s_cub
 {
-	int		x_res;
-	int		y_res;
-	char	*no_texture;
-	char	*so_texture;
-	char	*we_texture;
-	char	*ea_texture;
-	char	*sp_texture;
-	int		floor_colour[3];
-	int		ceiling_colour[3];
+	long int	x_res;
+	long int	y_res;
+	char		*no_texture;
+	char		*so_texture;
+	char		*we_texture;
+	char		*ea_texture;
+	char		*sp_texture;
+	int			floor_colour[3];
+	int			ceiling_colour[3];
 	t_list	*map;
 }				t_cub;
 
@@ -185,5 +186,7 @@ void	my_mlx_pixel_put(t_window_settings *window, int x, int y, int color);
 int		check_config_file(t_cub config);
 int		get_colour(t_texture texture, int x, int y);
 void	verify_max_screen_size(t_window_settings window, t_cub *config);
+int		check_max_rgb_value(t_cub config);
+int		veirify_rgb_input(char c);
 
 #endif

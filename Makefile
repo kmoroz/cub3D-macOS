@@ -6,7 +6,7 @@
 #    By: ksmorozo <ksmorozo@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/02/24 11:23:42 by ksmorozo      #+#    #+#                  #
-#    Updated: 2021/06/18 11:53:11 by ksmorozo      ########   odam.nl          #
+#    Updated: 2021/06/18 14:09:51 by ksmorozo      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ parser.c get_next_line/get_next_line.c \
 handle_image.c \
 draw_floor_ceiling.c handle_textures.c \
 check_arguments.c draw_sprite.c \
-check_map.c check_resolution.c
+check_map.c check_resolution.c \
+check_rgb.c
 
 MINILIBX_DIR = mlx/
 MINILIBX = libmlx.dylib
