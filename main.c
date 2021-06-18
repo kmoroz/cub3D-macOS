@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/14 17:53:04 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/18 11:57:31 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/18 13:20:13 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,16 @@
 #include "mlx/mlx.h"
 #include <stdlib.h>
 
-t_window_settings	set_up_window(t_cub config)
+t_window_settings	set_up_window(t_cub *config)
 {
 	t_window_settings	window;
 
 	window.mlx = mlx_init(); //TODO: malloc check!!!
+	verify_max_screen_size(window, config);
 	window.window = mlx_new_window(window.mlx,
-		config.x_res, config.y_res, "cub3D");
+		config->x_res, config->y_res, "cub3D");
 	window.img = mlx_new_image(window.mlx,
-			config.x_res, config.y_res);
+			config->x_res, config->y_res);
 	return (window);
 }
 
@@ -215,7 +216,6 @@ void	set_up_game(t_window_settings *window, t_game_state *game, t_cub *config)
 	settings->game->wall->proj_plane_distance = 0;
 	settings->window = window;
 	settings->config = config;
-	verify_max_screen_size(settings);
 	init_player(settings);
 	init_ray(settings);
 	load_textures(settings);
@@ -240,7 +240,7 @@ int	main(int argc, char **argv)
 	if (check_config_file(config) == ERROR)
 		return (ERROR);
 	//set up mlx
-	window = set_up_window(config);
+	window = set_up_window(&config);
 	//set up game
 	set_up_game(&window, &game, &config);
 	//loop
