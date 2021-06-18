@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/14 17:53:04 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/17 16:58:49 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/18 11:14:50 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,8 +181,8 @@ void	init_player(t_settings *settings)
 	player = malloc(sizeof(t_player));
 	player->turn_direction = 0;
 	player->walk_direction = 0;
-	player->walk_speed = 2;
-	player->turn_speed = 10 * (PI / 180);
+	player->walk_speed = 4;
+	player->turn_speed = 20 * (PI / 180);
 	settings->game->player = player;
 	init_player_position(settings);
 	init_player_angle(settings);
