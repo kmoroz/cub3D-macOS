@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/14 17:53:04 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/18 11:14:50 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/18 11:57:31 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,7 +199,6 @@ void	set_up_game(t_window_settings *window, t_game_state *game, t_cub *config)
 {
 	t_settings *settings;
 	t_wall *wall;
-	int *colour_buffer;
 
 	settings = malloc(sizeof(t_settings));
 	wall = malloc(sizeof(t_wall));
@@ -216,6 +215,7 @@ void	set_up_game(t_window_settings *window, t_game_state *game, t_cub *config)
 	settings->game->wall->proj_plane_distance = 0;
 	settings->window = window;
 	settings->config = config;
+	verify_max_screen_size(settings);
 	init_player(settings);
 	init_ray(settings);
 	load_textures(settings);

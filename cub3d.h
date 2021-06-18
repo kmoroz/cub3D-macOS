@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/08 13:15:43 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/17 16:48:51 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/18 11:54:59 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,5 +184,6 @@ float	normalise_angle(float angle);
 void	my_mlx_pixel_put(t_window_settings *window, int x, int y, int color);
 int		check_config_file(t_cub config);
 int		get_colour(t_texture texture, int x, int y);
+void	verify_max_screen_size(t_settings *settings);
 
 #endif
