@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/08 13:09:14 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/09 17:08:18 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/19 17:00:44 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,8 @@ int	parse_floor_colour(t_cub *game_config, char *line)
 
 	line += 2;
 	index = 0;
+	if (veirify_rgb_input(*line) == ERROR)
+		return (ERROR);
 	while (*line && index < 3)
 	{
 		while (ft_isdigit(*line) && *line != ',')
@@ -106,7 +108,7 @@ int	parse_floor_colour(t_cub *game_config, char *line)
 		index++;
 		line++;
 	}
-	return (1);
+	return (OK);
 }
 
 int	parse_ceiling_colour(t_cub *game_config, char *line)
@@ -135,10 +137,11 @@ int	parse_map(t_cub *game_config, char *line)
 
 	if (!game_config->map)
 	{
-		if (!*line)
-			return (1);
-		game_config->map = ft_lstnew(line);
-		return (1);
+		if (!game_config->no_texture || !game_config->so_texture || !game_config->x_res || !game_config->y_res)
+			return (ERROR);
+		if (line[0] != '\0')
+			game_config->map = ft_lstnew(line);
+		return (OK);
 	}
 	current = game_config->map;
 	while (current->next)
@@ -147,40 +150,41 @@ int	parse_map(t_cub *game_config, char *line)
 	}
 	current->next = ft_lstnew(line);
 	printf("%s\n", line);
-	return (1);
+	return (OK);
 }
 
-t_cub	parse_file(char *file)
+int	parse_file(char *file, t_cub *game_config)
 {
-	t_cub	game_config;
 	int		fd;
 	char	*line;
+	int		result;
+	int		line_status;
 
 	fd = open(file, O_RDONLY);
-	ft_memset(&game_config, 0, sizeof(game_config));
-	while (get_next_line(fd, &line) > 0)
+	result = 1;
+	line_status = 1;
+	while (line_status == OK && result == OK)
 	{
+		line_status = get_next_line(fd, &line);
 		if (*line == 'R')
-			parse_res(&game_config, line);
+			result = parse_res(game_config, line);
 		if (line[0] == 'N' && line[1] == 'O')
-			parse_texture(&game_config, line);
+			result = parse_texture(game_config, line);
 		if (line[0] == 'S' && line[1] == 'O')
-			parse_texture(&game_config, line);
+			result = parse_texture(game_config, line);
 		if (line[0] == 'W' && line[1] == 'E')
-			parse_texture(&game_config, line);
+			result = parse_texture(game_config, line);
 		if (line[0] == 'E' && line[1] == 'A')
-			parse_texture(&game_config, line);
+			result = parse_texture(game_config, line);
 		if (line[0] == 'S' && ft_isspace(line[1]))
-			parse_sprite(&game_config, line);
+			result = parse_sprite(game_config, line);
 		if (line[0] == 'F' && ft_isspace(line[1]))
-			parse_floor_colour(&game_config, line);
+			result = parse_floor_colour(game_config, line);
 		if (line[0] == 'C' && ft_isspace(line[1]))
-			parse_ceiling_colour(&game_config, line);
-		if (ft_isdigit(*line) || ft_isspace(*line) || line[0] == 0)
-			parse_map(&game_config, line);
-		// free(line);
+			result = parse_ceiling_colour(game_config, line);
+		if (ft_isdigit(line[0]) || ft_isspace(line[0]) || line[0] == 0)
+			result = parse_map(game_config, line);
+		free(line);
 	}
-	parse_map(&game_config, line);
-	//free(line);
-	return (game_config);
+	return (result);
 }

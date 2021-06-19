@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/09 11:43:53 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/17 13:50:37 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/19 16:24:06 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,29 +43,45 @@ int	check_player(t_cub config)
 	return (ERROR);
 }
 
-int	check_blank_lines_in_map(t_cub config)
+int	is_line_last(t_cub config, int x, int y)
 {
-	int		x;
-	int		y;
-	int		count;
-
-	x = 0;
-	y = 0;
-	count = 0;
 	while (config.map)
 	{
 		while ((config.map->row[x]))
 		{
 			if (ft_isalnum(config.map->row[x]))
-				count++;
+				return (0);
 			x++;
 		}
-		if (count == 0)
-			return (ERROR);
 		config.map = config.map->next;
 		y++;
 		x = 0;
-		count = 0;
+	}
+	return (1);
+}
+
+int	check_blank_lines_in_map(t_cub config)
+{
+	int		x;
+	int		y;
+	int		result;
+	t_list	*temp;
+
+	x = 0;
+	y = 0;
+	result = 0;
+	temp = config.map;
+	while (temp)
+	{
+		while ((temp->row[x]))
+		{
+			if (temp->row[x] == '\0' && !is_line_last(config, x, y + 1))
+				return (ERROR);
+			x++;
+		}
+		temp = temp->next;
+		y++;
+		x = 0;
 	}
 	return (1);
 }
@@ -142,6 +158,11 @@ int	check_config_file(t_cub config)
 	{
 		printf("Error\n\U0001f4a9 Invalid map \U0001f4a9\n");
 		return (ERROR);
+	}
+	if (check_max_rgb_value(config) == ERROR)
+	{
+		printf("Error\n\U0001f4a9 Invalid RGB value \U0001f4a9\n");
+		return (ERROR);		
 	}
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/18 14:43:28 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/17 12:04:37 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/19 18:15:48 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,9 +207,18 @@ void	create_image(t_settings *settings)
 			&settings->window->endian);
 }
 
+static void destroy_image(t_settings *settings)
+{
+	mlx_destroy_image(settings->window->mlx, settings->window->img);
+	settings->window->img = mlx_new_image(settings->window->mlx, settings->config->x_res,\
+				settings->config->y_res);
+}
+
 int	refresh(t_settings *settings)
 {
-	create_image(settings);
+	settings->window->addr = mlx_get_data_addr(settings->window->img,
+	&settings->window->bits_per_pixel, &settings->window->line_length,
+	&settings->window->endian);
 	draw_floor(settings);
 	draw_ceiling(settings);
 	draw_line(settings);
@@ -221,6 +230,6 @@ int	refresh(t_settings *settings)
 	draw_minimap_sprite(settings);
 	mlx_put_image_to_window(settings->window->mlx,
 		settings->window->window, settings->window->img, 0, 0);
-	mlx_destroy_image(settings->window->mlx, settings->window->img);
+	destroy_image(settings);
 	return (0);
 }

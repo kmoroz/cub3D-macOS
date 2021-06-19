@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/14 17:53:04 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/18 13:20:13 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/19 18:21:55 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,11 +232,15 @@ int	main(int argc, char **argv)
 	t_game_state		game;
 	t_window_settings	window;
 
-	//ft_memset(&game, 0, sizeof(game)); //TO DO: is it necessary?
+	ft_memset(&game, 0, sizeof(game)); //TO DO: is it necessary?
 	//parse
 	if (check_args(argc, argv) == ERROR)
 		return (ERROR);
-	config = parse_file(argv[1]);
+	if (parse_file(argv[1], &config) == ERROR)
+	{
+		printf("File read insuccessful. Check values inside the file.");
+		return (ERROR);
+	}
 	if (check_config_file(config) == ERROR)
 		return (ERROR);
 	//set up mlx
