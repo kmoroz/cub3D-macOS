@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/08 13:15:43 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/18 14:36:41 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/19 19:51:41 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,7 @@ typedef struct s_settings
 	t_ray				*ray;
 }				t_settings;
 
-t_cub	parse_file(char *file);
+int		parse_file(char *file, t_cub *config);
 int		key_press_handler(int keycode, t_settings *settings);
 int		key_release_handler(int keycode, t_settings *settings);
 int		refresh(t_settings *settings);

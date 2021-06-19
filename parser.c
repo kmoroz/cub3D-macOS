@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/08 13:09:14 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/09 17:08:18 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/19 19:54:03 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,37 +150,37 @@ int	parse_map(t_cub *game_config, char *line)
 	return (1);
 }
 
-t_cub	parse_file(char *file)
+int	parse_file(char *file, t_cub *game_config)
 {
-	t_cub	game_config;
 	int		fd;
 	char	*line;
+	int		line_status;
 
 	fd = open(file, O_RDONLY);
-	ft_memset(&game_config, 0, sizeof(game_config));
-	while (get_next_line(fd, &line) > 0)
+	line_status = 1;
+	ft_memset(game_config, 0, sizeof(game_config));
+	while (line_status)
 	{
+		line_status = get_next_line(fd, &line);
 		if (*line == 'R')
-			parse_res(&game_config, line);
+			parse_res(game_config, line);
 		if (line[0] == 'N' && line[1] == 'O')
-			parse_texture(&game_config, line);
+			parse_texture(game_config, line);
 		if (line[0] == 'S' && line[1] == 'O')
-			parse_texture(&game_config, line);
+			parse_texture(game_config, line);
 		if (line[0] == 'W' && line[1] == 'E')
-			parse_texture(&game_config, line);
+			parse_texture(game_config, line);
 		if (line[0] == 'E' && line[1] == 'A')
-			parse_texture(&game_config, line);
+			parse_texture(game_config, line);
 		if (line[0] == 'S' && ft_isspace(line[1]))
-			parse_sprite(&game_config, line);
+			parse_sprite(game_config, line);
 		if (line[0] == 'F' && ft_isspace(line[1]))
-			parse_floor_colour(&game_config, line);
+			parse_floor_colour(game_config, line);
 		if (line[0] == 'C' && ft_isspace(line[1]))
-			parse_ceiling_colour(&game_config, line);
+			parse_ceiling_colour(game_config, line);
 		if (ft_isdigit(*line) || ft_isspace(*line) || line[0] == 0)
-			parse_map(&game_config, line);
-		// free(line);
+			parse_map(game_config, line);
+		free(line);
 	}
-	parse_map(&game_config, line);
-	//free(line);
-	return (game_config);
+	return (OK);
 }
