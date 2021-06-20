@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/14 17:53:04 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/20 12:16:27 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/20 13:31:57 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,17 +226,25 @@ void	set_up_game(t_window_settings *window, t_game_state *game, t_cub *config)
 	mlx_loop_hook(window->mlx, refresh, settings);
 }
 
+void init_config_file(t_cub *config)
+{
+	config->ea_texture = 0;
+	config->so_texture = 0;
+	config->sp_texture = 0;
+	config->we_texture = 0;
+}
+
 int	main(int argc, char **argv)
 {
 	t_cub				config;
 	t_game_state		game;
 	t_window_settings	window;
 
-	//ft_memset(&game, 0, sizeof(game)); //TO DO: is it necessary?
-	//parse
 	if (check_args(argc, argv) == ERROR)
 		return (ERROR);
-	parse_file(argv[1], &config);
+	init_config_file(&config);
+	if (parse_file(argv[1], &config) == ERROR)
+		return (ERROR);
 	if (check_config_file(config) == ERROR)
 		return (ERROR);
 	//set up mlx

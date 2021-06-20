@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/09 11:43:53 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/17 13:50:37 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/20 13:47:40 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,15 @@ int	is_map_closed(t_cub config)
 		x = 0;
 	}
 	return (1);
+}
+
+int is_map_on_top(t_cub config)
+{
+	if (config.x_res && config.y_res && config.no_texture
+		&& config.so_texture && config.we_texture && config.sp_texture && config.ea_texture)
+		return (0);
+	else
+		return (1);
 }
 
 int	check_map(t_cub config)
