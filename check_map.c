@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/09 11:43:53 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/20 13:47:40 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/20 14:23:04 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,31 +43,39 @@ int	check_player(t_cub config)
 	return (ERROR);
 }
 
+int is_line_last(t_cub config)
+{
+	int		x;
+
+	x = 0;
+	config.map = config.map->next;
+	if (!config.map)
+		return (1);
+	while (config.map)
+	{
+		if (ft_isalnum(config.map->row[x]) || ft_isspace(config.map->row[x]))
+			return (0);
+		x++;
+		config.map = config.map->next;
+		x = 0;
+	}
+	return (1);
+}
+
 int	check_blank_lines_in_map(t_cub config)
 {
 	int		x;
-	int		y;
-	int		count;
 
 	x = 0;
-	y = 0;
-	count = 0;
 	while (config.map)
 	{
-		while ((config.map->row[x]))
-		{
-			if (ft_isalnum(config.map->row[x]))
-				count++;
-			x++;
-		}
-		if (count == 0)
+		if (config.map->row[0] == '\0' && !is_line_last(config))
 			return (ERROR);
+		x++;
 		config.map = config.map->next;
-		y++;
 		x = 0;
-		count = 0;
 	}
-	return (1);
+	return (OK);
 }
 
 int	is_zero_open(t_cub config, int x, int y)
