@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/08 13:09:14 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/20 13:49:32 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/20 13:54:49 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,12 +140,11 @@ int	parse_map(t_cub *game_config, char *line)
 	{
 		if (!game_config->map)
 		{
-			if (!*line)
-				return (1);
 			if (is_map_on_top(*game_config))
 				return (ERROR);
-			game_config->map = ft_lstnew(line);
-			return (1);
+			if (*line)
+				game_config->map = ft_lstnew(line);
+			return (OK);
 		}
 		current = game_config->map;
 		while (current->next)
