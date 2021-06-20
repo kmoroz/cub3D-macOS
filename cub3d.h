@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/08 13:15:43 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/19 19:51:41 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/20 13:42:44 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,5 +188,6 @@ int		get_colour(t_texture texture, int x, int y);
 void	verify_max_screen_size(t_window_settings window, t_cub *config);
 int		check_max_rgb_value(t_cub config);
 int		veirify_rgb_input(char c);
+int		is_map_on_top(t_cub config);
 
 #endif
