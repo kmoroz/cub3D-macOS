@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/08 13:15:43 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/20 13:42:44 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/21 13:37:29 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define KEY_DOWN 65364
 # define PI 3.14159265
 # define TWO_PI 6.28318530
-# define FOV_ANGLE (60 * (PI / 180))
+# define FOV_ANGLE 1.0471975500000001
 # define WALL_STRIP_WIDTH 10
 # define SCALE_FACTOR 0.4
 # define TILE_SIZE 30
@@ -58,7 +58,7 @@ typedef struct s_cub
 	char		*sp_texture;
 	int			floor_colour[3];
 	int			ceiling_colour[3];
-	t_list	*map;
+	t_list		*map;
 }				t_cub;
 
 typedef struct s_window_settings
