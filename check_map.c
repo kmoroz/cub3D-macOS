@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/09 11:43:53 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/20 14:23:04 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/21 14:14:52 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ int	is_map_closed(t_cub config)
 
 int is_map_on_top(t_cub config)
 {
-	if (config.x_res && config.y_res && config.no_texture
+	if (config.x_res >= 0 && config.y_res >= 0 && config.no_texture
 		&& config.so_texture && config.we_texture && config.sp_texture && config.ea_texture)
 		return (0);
 	else
@@ -159,6 +159,16 @@ int	check_config_file(t_cub config)
 	{
 		printf("Error\n\U0001f4a9 Invalid map \U0001f4a9\n");
 		return (ERROR);
+	}
+	if (check_max_rgb_value(config) == ERROR)
+	{
+		printf("Error\n\U0001f4a9 Max RGB value exceeded \U0001f4a9\n");
+		return (ERROR);		
+	}
+	if (config.x_res == 0 || config.y_res == 0)
+	{
+		printf("Error\n\U0001f4a9 Resolution cannot be zero \U0001f4a9\n");
+		return (ERROR);			
 	}
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/08 13:09:14 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/20 13:54:49 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/21 14:18:51 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,12 @@ int	parse_floor_colour(t_cub *game_config, char *line)
 {
 	int	index;
 
-	if (line[0] == 'F' && ft_isspace(line[1]) && ft_isdigit(line[2]))
+	if (line[0] == 'F' && ft_isspace(line[1]))
 	{
 		line += 2;
 		index = 0;
+		if (veirify_rgb_input(*line) == ERROR)
+			return (ERROR);
 		while (*line && index < 3)
 		{
 			while (ft_isdigit(*line) && *line != ',')
@@ -105,18 +107,20 @@ int	parse_floor_colour(t_cub *game_config, char *line)
 			index++;
 			line++;
 		}
-		return (1);
 	}
+	return (OK);
 }
 
 int	parse_ceiling_colour(t_cub *game_config, char *line)
 {
 	int	index;
 
-	if (line[0] == 'C' && ft_isspace(line[1]) && ft_isdigit(line[2]))
+	if (line[0] == 'C' && ft_isspace(line[1]))
 	{
 		line += 2;
 		index = 0;
+		if (veirify_rgb_input(*line) == ERROR)
+			return (ERROR);
 		while (*line && index < 3)
 		{
 			while (ft_isdigit(*line) && *line != ',')
@@ -128,8 +132,8 @@ int	parse_ceiling_colour(t_cub *game_config, char *line)
 			index++;
 			line++;
 		}
-		return (1);
 	}
+	return (OK);
 }
 
 int	parse_map(t_cub *game_config, char *line)
@@ -140,7 +144,7 @@ int	parse_map(t_cub *game_config, char *line)
 	{
 		if (!game_config->map)
 		{
-			if (is_map_on_top(*game_config))
+			if (is_map_on_top(*game_config) && *line)
 				return (ERROR);
 			if (*line)
 				game_config->map = ft_lstnew(line);
@@ -171,11 +175,14 @@ int	parse_file(char *file, t_cub *game_config)
 		parse_res(game_config, line);
 		parse_texture(game_config, line);
 		parse_sprite(game_config, line);
-		parse_floor_colour(game_config, line);
-		parse_ceiling_colour(game_config, line);
+		if (parse_floor_colour(game_config, line) == ERROR || parse_ceiling_colour(game_config, line) == ERROR)
+		{
+			printf("Error\n\U0001f4a9 Couldn't parse RGB colours. Please check the config file provided. \U0001f4a9\n");
+			return (ERROR);
+		}
 		if (parse_map(game_config, line) == ERROR)
 		{
-			printf("Error\n\U0001f4a9 Couldn't parse map. Please check the config file provided. \U0001f4a9\n");
+			printf("Error\n\U0001f4a9 Couldn't parse map. Map cannot be on top of the file. \U0001f4a9\n");
 			return (ERROR);
 		}
 		free(line);

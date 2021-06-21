@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/14 17:53:04 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/20 13:31:57 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/21 14:05:25 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,6 +232,9 @@ void init_config_file(t_cub *config)
 	config->so_texture = 0;
 	config->sp_texture = 0;
 	config->we_texture = 0;
+	config->no_texture = 0;
+	config->x_res = '\0';
+	config->y_res = '\0';
 }
 
 int	main(int argc, char **argv)

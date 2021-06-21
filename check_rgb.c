@@ -16,7 +16,7 @@ int	check_max_rgb_value(t_cub config)
 	return (OK);
 }
 
-int veirify_rgb_input(char c)
+int	veirify_rgb_input(char c)
 {
 	if (c == '-')
 		return (ERROR);
