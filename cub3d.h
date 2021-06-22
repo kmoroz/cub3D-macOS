@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/08 13:15:43 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/22 15:46:56 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/22 15:58:17 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,7 +206,7 @@ float	calculate_angle_sprite_player(t_settings *settings,
 			int count, float angle_sprite_player);
 void	is_sprite_visible(t_settings *settings, t_sprite *sprite, int count);
 void	update_player_position(t_settings *settings, t_player *player);
-void	find_shortest_distance(t_settings *settings, int count);
+void	find_shortest_distance(t_player *player, t_ray *ray, int count);
 void	find_ray_direction(t_settings *settings);
 int		check_wall_collision(t_settings *settings, float next_x, float next_y);
 void	initialise_ray_struct(t_ray *ray);
