@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/08 13:09:14 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/21 14:18:51 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/22 11:25:25 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,17 +172,21 @@ int	parse_file(char *file, t_cub *game_config)
 	while (line_status)
 	{
 		line_status = get_next_line(fd, &line);
-		parse_res(game_config, line);
-		parse_texture(game_config, line);
-		parse_sprite(game_config, line);
-		if (parse_floor_colour(game_config, line) == ERROR || parse_ceiling_colour(game_config, line) == ERROR)
+		count_type_identifiers(game_config, line);
+		if (!game_config->map)
 		{
-			printf("Error\n\U0001f4a9 Couldn't parse RGB colours. Please check the config file provided. \U0001f4a9\n");
-			return (ERROR);
+			parse_res(game_config, line);
+			parse_texture(game_config, line);
+			parse_sprite(game_config, line);
+			if (parse_floor_colour(game_config, line) == ERROR || parse_ceiling_colour(game_config, line) == ERROR)
+			{
+				printf("Error\n\U0001f4a9 Couldn't parse RGB colours. Please check the config file provided. \U0001f4a9\n");
+				return (ERROR);
+			}
 		}
 		if (parse_map(game_config, line) == ERROR)
 		{
-			printf("Error\n\U0001f4a9 Couldn't parse map. Map cannot be on top of the file. \U0001f4a9\n");
+			printf("Error\n\U0001f4a9 Incorrect number of type identifiers OR map isn't at the bottom of file \U0001f4a9\n");
 			return (ERROR);
 		}
 		free(line);

@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/09 11:43:53 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/21 14:14:52 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/22 11:28:34 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,11 +133,10 @@ int	is_map_closed(t_cub config)
 
 int is_map_on_top(t_cub config)
 {
-	if (config.x_res >= 0 && config.y_res >= 0 && config.no_texture
-		&& config.so_texture && config.we_texture && config.sp_texture && config.ea_texture)
-		return (0);
-	else
+	if (config.type_identifier_num < 8)
 		return (1);
+	else
+		return (0);
 }
 
 int	check_map(t_cub config)
@@ -170,5 +169,9 @@ int	check_config_file(t_cub config)
 		printf("Error\n\U0001f4a9 Resolution cannot be zero \U0001f4a9\n");
 		return (ERROR);			
 	}
+	if (is_texture_provided(config) == ERROR)
+		return (ERROR);
+	if (verify_num_of_type_identifiers(config) == ERROR)
+		return (ERROR);
 	return (1);
 }
