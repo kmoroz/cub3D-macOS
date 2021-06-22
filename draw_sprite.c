@@ -6,22 +6,12 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/31 10:31:06 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/17 12:04:31 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/22 14:14:29 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "mlx/mlx.h"
-
-int get_colour(t_texture texture, int x, int y)
-{
-	int	colour;
-
-	colour = *(int*)(texture.addr
-			+ (y * texture.line_length)
-			+ (x * texture.bits_per_pixel / 8));
-	return (colour);
-}
 
 int	animate_sprite(void)
 {
@@ -50,7 +40,7 @@ int	animate_sprite(void)
 	animation_offset++;
 }
 
-void	check_and_draw_sprite(t_settings *settings, float x, float y, int count, int index)
+void	check_and_draw_sprite(t_settings *settings, float x, float y, int count)
 {
 	int		tex_colour;
 	float	texel_width;
@@ -58,7 +48,8 @@ void	check_and_draw_sprite(t_settings *settings, float x, float y, int count, in
 	int		distance_from_top;
 	int		texture_offset_y;
 
-	texel_width = (settings->game->texture[index].img_width
+	texel_width = (settings->game->texture[settings->game
+			->sprite->animation_index].img_width
 			/ settings->game->sprite->width);
 	texture_offset_x = (x - settings->game->sprite->left_x[count])
 		* texel_width;
@@ -67,20 +58,18 @@ void	check_and_draw_sprite(t_settings *settings, float x, float y, int count, in
 	{	
 		distance_from_top = y + (settings->game->sprite->height / 2)
 			- (settings->config->y_res / 2);
-		texture_offset_y = distance_from_top
-			* (settings->game->texture[index].img_height
+		texture_offset_y = distance_from_top * (settings->game->texture
+			[settings->game->sprite->animation_index].img_height
 				/ settings->game->sprite->height);
-		// tex_colour = settings->game->texture[index]
-		// 	.colour_buffer[(settings->game->texture[index].img_width
-		// 		* texture_offset_y) + texture_offset_x];
-		tex_colour = get_colour(settings->game->texture[index], texture_offset_x, texture_offset_y);
+		tex_colour = get_colour(settings->game->texture[settings->game
+				->sprite->animation_index], texture_offset_x, texture_offset_y);
 		if (tex_colour != 16711935 && settings->game->sprite->distance[count]
 			< settings->ray->distance[(int)x])
 			my_mlx_pixel_put(settings->window, x, y, tex_colour);
 	}
 }
 
-void	draw_sprite(t_settings *settings, int count, int index)
+void	draw_sprite(t_settings *settings, int count)
 {
 	float		x;
 	float		y;
@@ -91,14 +80,14 @@ void	draw_sprite(t_settings *settings, int count, int index)
 		y = settings->game->sprite->top[count];
 		while (y < settings->game->sprite->bottom[count])
 		{
-			check_and_draw_sprite(settings, x, y, count, index);
+			check_and_draw_sprite(settings, x, y, count);
 			y++;
 		}
 		x++;
 	}
 }
 
-void	display_sprite(t_settings *settings, t_sprite *sprite, int count, int index)
+void	display_sprite(t_settings *settings, t_sprite *sprite, int count)
 {
 	while (count < sprite->num)
 	{
@@ -121,92 +110,8 @@ void	display_sprite(t_settings *settings, t_sprite *sprite, int count, int index
 			sprite->left_x[count] = (settings->config->x_res / 2)
 				+ sprite->screen_pos_x[count] - (sprite->width / 2);
 			sprite->right_x[count] = sprite->left_x[count] + sprite->width;
-			draw_sprite(settings, count, index);
+			draw_sprite(settings, count);
 		}
-		count++;
-	}
-}
-
-static void	swap_sprites(t_sprite *sprite, int i, int j)
-{
-	float		temp_dist;
-	float		temp_y;
-	float		temp_x;
-	float		temp_angle;
-	int			temp_visible;
-
-	temp_dist = sprite->distance[j];
-	temp_x = sprite->x[j];
-	temp_y = sprite->y[j];
-	temp_angle = sprite->angle[j];
-	temp_visible = sprite->visible[j];
-	sprite->distance[j] = sprite->distance[i];
-	sprite->x[j] = sprite->x[i];
-	sprite->y[j] = sprite->y[i];
-	sprite->angle[j] = sprite->angle[i];
-	sprite->visible[j] = sprite->visible[i];
-	sprite->distance[i] = temp_dist;
-	sprite->x[i] = temp_x;
-	sprite->y[i] = temp_y;
-	sprite->angle[i] = temp_angle;
-	sprite->visible[i] = temp_visible;
-}
-
-void	sort_sprites(t_settings *settings)
-{
-	int	j;
-	int	i;
-
-	i = -1;
-	while (i++ < settings->game->sprite->num)
-	{
-		j = i + 1;
-		while (j < settings->game->sprite->num)
-		{
-			if (settings->game->sprite->distance[j]
-				> settings->game->sprite->distance[i])
-				swap_sprites(settings->game->sprite, i, j);
-			j++;
-		}
-	}
-}
-
-float	calculate_angle_sprite_player
-(t_settings *settings, int count, float angle_sprite_player)
-{
-	angle_sprite_player = settings->game->player->angle
-		- atan2(settings->game->sprite->y[count]
-			- settings->game->player->ypos, settings->game->sprite->x[count]
-			- settings->game->player->xpos);
-	if (angle_sprite_player > PI)
-		angle_sprite_player -= TWO_PI;
-	if (angle_sprite_player < -PI)
-		angle_sprite_player += TWO_PI;
-	angle_sprite_player = fabs(angle_sprite_player);
-	return (angle_sprite_player);
-}
-
-void	is_sprite_visible(t_settings *settings, t_sprite *sprite, int count)
-{
-	float		angle_sprite_player;
-
-	while (count < settings->game->sprite->num)
-	{	
-		angle_sprite_player = calculate_angle_sprite_player
-			(settings, count, angle_sprite_player);
-		if (angle_sprite_player < (FOV_ANGLE / 2) + EPSILON)
-		{
-			sprite->visible[count] = 1;
-			sprite->distance[count] = calculate_distance(sprite->x[count],
-					sprite->y[count], settings->game->player->xpos,
-					settings->game->player->ypos);
-			sprite->angle[count] = atan2(sprite->y[count]
-					- settings->game->player->ypos, sprite->x[count]
-					- settings->game->player->xpos)
-				- settings->game->player->angle;
-		}
-		else
-			sprite->visible[count] = 0;
 		count++;
 	}
 }
@@ -215,12 +120,11 @@ void	render_sprite(t_settings *settings)
 {
 	t_sprite	*sprite;
 	int			count;
-	int			index;
 
-	index = animate_sprite();
 	sprite = settings->game->sprite;
 	count = 0;
+	sprite->animation_index = animate_sprite();
 	is_sprite_visible(settings, sprite, count);
 	sort_sprites(settings);
-	display_sprite(settings, sprite, count, index);
+	display_sprite(settings, sprite, count);
 }
