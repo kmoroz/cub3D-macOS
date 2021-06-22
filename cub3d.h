@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/08 13:15:43 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/22 11:29:15 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/22 15:46:56 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ typedef struct s_sprite
 	float		*right_x;
 	float		height;
 	float		width;
+	int			animation_index;
 }			t_sprite;
 
 typedef struct s_game
@@ -184,7 +185,6 @@ float	calculate_distance(float x, float y,
 void	render_sprite(t_settings *settings);
 float	normalise_angle(float angle);
 void	my_mlx_pixel_put(t_window_settings *window, int x, int y, int color);
-int		check_config_file(t_cub config);
 int		get_colour(t_texture texture, int x, int y);
 void	verify_max_screen_size(t_window_settings window, t_cub *config);
 int		check_max_rgb_value(t_cub config);
@@ -193,5 +193,22 @@ int		is_map_on_top(t_cub config);
 void	count_type_identifiers(t_cub *config, char *line);
 int		verify_num_of_type_identifiers(t_cub config);
 int		is_texture_provided(t_cub config);
+int		check_map(t_cub config);
+int		check_player(t_cub config);
+int		is_map_on_top(t_cub config);
+int		is_map_closed(t_cub config);
+int		is_zero_open(t_cub config, int x, int y);
+int		check_blank_lines_in_map(t_cub config);
+int		is_line_last(t_cub config);
+void	swap_sprites(t_sprite *sprite, int i, int j);
+void	sort_sprites(t_settings *settings);
+float	calculate_angle_sprite_player(t_settings *settings,
+			int count, float angle_sprite_player);
+void	is_sprite_visible(t_settings *settings, t_sprite *sprite, int count);
+void	update_player_position(t_settings *settings, t_player *player);
+void	find_shortest_distance(t_settings *settings, int count);
+void	find_ray_direction(t_settings *settings);
+int		check_wall_collision(t_settings *settings, float next_x, float next_y);
+void	initialise_ray_struct(t_ray *ray);
 
 #endif
