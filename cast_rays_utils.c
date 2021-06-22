@@ -50,31 +50,31 @@ void	find_ray_direction(t_settings *settings)
 		settings->ray->is_ray_facing_left = 1;
 }
 
-void find_shortest_distance(t_settings *settings, int count)
+void	find_shortest_distance(t_player *player, t_ray *ray, int count)
 {
-	float	horizontal_distance;
-	float	vertical_distance;
+	float	hor_distance;
+	float	vert_distance;
 
-	horizontal_distance = 0;
-	vertical_distance = 0;
-	if (settings->ray->horizontal_wall_hit)
-		horizontal_distance = calculate_distance(settings->game->player->xpos,
-				settings->game->player->ypos, settings->ray->horizontal_wall_hit_x,
-				settings->ray->horizontal_wall_hit_y);
-	if (settings->ray->vertical_wall_hit)
-		vertical_distance = calculate_distance(settings->game->player->xpos, settings->game->player->ypos,
-				settings->ray->vertical_wall_hit_x, settings->ray->vertical_wall_hit_y);
-	if ((horizontal_distance < vertical_distance && horizontal_distance) || !vertical_distance)
+	hor_distance = 0;
+	vert_distance = 0;
+	if (ray->horizontal_wall_hit)
+		hor_distance = calculate_distance(player->xpos,
+				player->ypos, ray->horizontal_wall_hit_x,
+				ray->horizontal_wall_hit_y);
+	if (ray->vertical_wall_hit)
+		vert_distance = calculate_distance(player->xpos, player->ypos,
+				ray->vertical_wall_hit_x, ray->vertical_wall_hit_y);
+	if ((hor_distance < vert_distance && hor_distance) || !vert_distance)
 	{
-		settings->ray->wall_hit_x = settings->ray->horizontal_wall_hit_x;
-		settings->ray->wall_hit_y = settings->ray->horizontal_wall_hit_y;
-		settings->ray->distance[count] = horizontal_distance;
+		ray->wall_hit_x = ray->horizontal_wall_hit_x;
+		ray->wall_hit_y = ray->horizontal_wall_hit_y;
+		ray->distance[count] = hor_distance;
 	}
 	else
 	{
-		settings->ray->wall_hit_x = settings->ray->vertical_wall_hit_x;
-		settings->ray->wall_hit_y = settings->ray->vertical_wall_hit_y;
-		settings->ray->distance[count] = vertical_distance;
-		settings->ray->was_hit_vertical = 1;
+		ray->wall_hit_x = ray->vertical_wall_hit_x;
+		ray->wall_hit_y = ray->vertical_wall_hit_y;
+		ray->distance[count] = vert_distance;
+		ray->was_hit_vertical = 1;
 	}
 }

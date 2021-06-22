@@ -111,8 +111,12 @@ void	handle_vertical_interception(t_settings *settings)
 
 void	cast_rays(t_settings *settings)
 {
-	int		count;
+	int			count;
+	t_ray		*ray;
+	t_player	*player;
 
+	ray = settings->ray;
+	player = settings->game->player;
 	settings->ray->num_rays = settings->config->x_res;
 	settings->ray->ray_angle = settings->game->player->angle - (FOV_ANGLE / 2);
 	count = 0;
@@ -123,7 +127,7 @@ void	cast_rays(t_settings *settings)
 		find_ray_direction(settings);
 		handle_horizontal_interception(settings);
 		handle_vertical_interception(settings);
-		find_shortest_distance(settings, count);
+		find_shortest_distance(player, ray, count);
 		draw_ray(settings, settings->ray->wall_hit_x,
 			settings->ray->wall_hit_y);
 		generate_wall_projection(settings, count);
