@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/08 13:15:43 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/22 15:58:17 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/22 16:30:19 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,5 +210,7 @@ void	find_shortest_distance(t_player *player, t_ray *ray, int count);
 void	find_ray_direction(t_settings *settings);
 int		check_wall_collision(t_settings *settings, float next_x, float next_y);
 void	initialise_ray_struct(t_ray *ray);
+void	draw_minimap_components(t_settings *settings);
+void	draw_a_square(t_window_settings *window, float x, float y, int color);
 
 #endif
