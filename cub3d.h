@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/08 13:15:43 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/21 13:37:29 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/22 11:29:15 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_cub
 	char		*sp_texture;
 	int			floor_colour[3];
 	int			ceiling_colour[3];
+	int			type_identifier_num;
 	t_list		*map;
 }				t_cub;
 
@@ -189,5 +190,8 @@ void	verify_max_screen_size(t_window_settings window, t_cub *config);
 int		check_max_rgb_value(t_cub config);
 int		veirify_rgb_input(char c);
 int		is_map_on_top(t_cub config);
+void	count_type_identifiers(t_cub *config, char *line);
+int		verify_num_of_type_identifiers(t_cub config);
+int		is_texture_provided(t_cub config);
 
 #endif
