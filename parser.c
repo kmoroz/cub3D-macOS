@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/08 13:09:14 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/22 11:25:25 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/23 16:07:05 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	parse_res(t_cub *game_config, char *line)
 			}
 		}
 	}
+	return (OK);
 }
 
 int	parse_texture(t_cub *game_config, char *line)
@@ -65,6 +66,7 @@ int	parse_texture(t_cub *game_config, char *line)
 			return (OK);
 		}
 	}
+	return (OK);
 }
 
 int	parse_sprite(t_cub *game_config, char *line)
@@ -82,8 +84,8 @@ int	parse_sprite(t_cub *game_config, char *line)
 			game_config->sp_texture = location;
 			return (1);
 		}
-		return (-1);
 	}
+	return (OK);
 }
 
 int	parse_floor_colour(t_cub *game_config, char *line)
@@ -159,6 +161,7 @@ int	parse_map(t_cub *game_config, char *line)
 		printf("%s\n", line);
 		return (1);
 	}
+	return (OK);
 }
 
 int	parse_file(char *file, t_cub *game_config)

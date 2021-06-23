@@ -6,7 +6,7 @@
 #    By: ksmorozo <ksmorozo@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/02/24 11:23:42 by ksmorozo      #+#    #+#                  #
-#    Updated: 2021/06/23 13:44:03 by ksmorozo      ########   odam.nl          #
+#    Updated: 2021/06/23 17:11:46 by ksmorozo      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ LIBFT = libft.a
 OBJ = $(SRC_FILE:.c=.o)
 HEADER = cub3d.h
 
-CFLAGS = -g #-Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror
 
 all: $(NAME)
 

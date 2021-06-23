@@ -1,4 +1,5 @@
 #include "cub3d.h"
+#include <stdlib.h>
 
 void	init_texture_path(t_cub *config)
 {

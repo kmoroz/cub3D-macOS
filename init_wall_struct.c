@@ -1,4 +1,5 @@
 #include "cub3d.h"
+#include <stdlib.h>
 
 void	init_wall(t_settings *settings)
 {

@@ -1,4 +1,5 @@
 #include "cub3d.h"
+#include <stdio.h>
 
 void	count_type_identifiers(t_cub *config, char *line)
 {

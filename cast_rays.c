@@ -68,7 +68,6 @@ void	handle_horizontal_interception(t_settings *settings)
 {
 	float	x_intercept;
 	float	y_intercept;
-	t_ray	*ray;
 
 	y_intercept = floor(settings->game->player->ypos / TILE_SIZE) * TILE_SIZE;
 	if (settings->ray->is_ray_facing_down)

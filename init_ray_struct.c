@@ -1,4 +1,5 @@
 #include "cub3d.h"
+#include <stdlib.h>
 
 void	reset_ray_struct(t_ray *ray)
 {

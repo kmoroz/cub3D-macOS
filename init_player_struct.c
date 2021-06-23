@@ -1,4 +1,5 @@
 #include "cub3d.h"
+#include <stdlib.h>
 
 void	init_player_position(t_settings *settings)
 {

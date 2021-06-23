@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/18 14:43:28 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/23 15:22:34 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/23 17:08:41 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	choose_texture(t_settings *settings)
 	return (ERROR); //remove
 }
 
-void	draw_wall(t_settings *settings, t_texture texture, int count, int index)
+void	draw_wall(t_settings *settings, t_texture texture, int count)
 {
 	int	texture_offset_x;
 	int	distance_from_top;
@@ -80,7 +80,7 @@ void	generate_wall_projection(t_settings *settings, int count)
 		+ (settings->game->wall->wall_strip_height / 2);
 	if (settings->game->wall->wall_bottom_pixel > settings->config->y_res)
 		settings->game->wall->wall_bottom_pixel = settings->config->y_res;
-	draw_wall(settings, texture, count, index);
+	draw_wall(settings, texture, count);
 }
 
 void	create_image(t_settings *settings)
@@ -97,7 +97,6 @@ int	refresh(t_settings *settings)
 	create_image(settings);
 	draw_floor(settings);
 	draw_ceiling(settings);
-	draw_line(settings);
 	cast_rays(settings);
 	render_sprite(settings);
 	draw_minimap_components(settings);

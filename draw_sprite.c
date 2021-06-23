@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/31 10:31:06 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/22 14:14:29 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/23 17:10:32 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	animate_sprite(void)
 		animation_offset++;
 		return (SPRITE_TEXTURE);
 	}
-	if (animation_offset >= 150)
+	else
 	{
 		animation_offset = 0;
 		return (SPRITE_TEXTURE);

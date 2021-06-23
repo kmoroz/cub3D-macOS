@@ -1,4 +1,5 @@
 #include "cub3d.h"
+#include <stdlib.h>
 
 void	count_sprites(t_settings *settings)
 {

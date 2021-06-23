@@ -1,4 +1,5 @@
 #include "cub3d.h"
+#include <stdio.h>
 
 int	is_texture_provided(t_cub config)
 {
