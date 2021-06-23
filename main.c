@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/14 17:53:04 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/23 13:52:33 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/23 15:27:55 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,17 @@ t_window_settings	set_up_window(t_cub *config)
 {
 	t_window_settings	window;
 
-	window.mlx = mlx_init(); //TODO: malloc check!!!
+	window.mlx = mlx_init();
 	verify_max_screen_size(window, config);
 	window.window = mlx_new_window(window.mlx,
-		config->x_res, config->y_res, "cub3D");
-	//window.img = mlx_new_image(window.mlx,
-			//config->x_res, config->y_res);
+			config->x_res, config->y_res, "cub3D");
 	return (window);
 }
 
-void	set_up_game(t_window_settings *window, t_game_state *game, t_cub *config)
+void	set_up_game(t_window_settings *window,
+	t_game_state *game, t_cub *config)
 {
-	t_settings *settings;
+	t_settings	*settings;
 
 	settings = malloc(sizeof(t_settings));
 	settings->window = malloc(sizeof(t_window_settings));
@@ -62,10 +61,7 @@ int	main(int argc, char **argv)
 		return (ERROR);
 	if (check_config_file(config) == ERROR)
 		return (ERROR);
-	//set up mlx
 	window = set_up_window(&config);
-	//set up game
 	set_up_game(&window, &game, &config);
-	//loop
 	mlx_loop(window.mlx);
 }
