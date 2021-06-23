@@ -123,7 +123,7 @@ void	cast_rays(t_settings *settings)
 	while (count < settings->ray->num_rays)
 	{
 		settings->ray->ray_angle = normalise_angle(settings->ray->ray_angle);
-		initialise_ray_struct(settings->ray);
+		reset_ray_struct(settings->ray);
 		find_ray_direction(settings);
 		handle_horizontal_interception(settings);
 		handle_vertical_interception(settings);

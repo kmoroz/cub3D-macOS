@@ -6,7 +6,7 @@
 #    By: ksmorozo <ksmorozo@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/02/24 11:23:42 by ksmorozo      #+#    #+#                  #
-#    Updated: 2021/06/22 16:27:34 by ksmorozo      ########   odam.nl          #
+#    Updated: 2021/06/23 13:44:03 by ksmorozo      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,9 @@ check_texture.c check_map_utils.c \
 draw_sprite_utils.c drawing_utils.c \
 update_player.c cast_rays.c \
 cast_rays_utils.c init_ray_struct.c \
-draw_minimap.c
+draw_minimap.c init_player_struct.c \
+init_sprite_struct.c init_config_struct.c \
+init_wall_struct.c
 
 MINILIBX_DIR = mlx/
 MINILIBX = libmlx.dylib
