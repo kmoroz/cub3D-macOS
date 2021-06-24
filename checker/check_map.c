@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/09 11:43:53 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/24 14:26:05 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/24 14:54:48 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	check_blank_lines_in_map(t_cub config)
 	return (OK);
 }
 
-int	is_zero_open(t_cub config, int x, int y)
+int	is_zero_two_open(t_cub config, int x, int y)
 {
 	int	current_row;
 	int	previous_row;
@@ -91,7 +91,8 @@ int	is_map_closed(t_cub config)
 	{
 		while ((temp->row[x]))
 		{
-			if (temp->row[x] == '0' && is_zero_open(config, x, y) == ERROR)
+			if (ft_strchr("02", temp->row[x])
+				&& is_zero_two_open(config, x, y) == ERROR)
 				return (ERROR);
 			x++;
 		}
@@ -108,7 +109,7 @@ int	check_map(t_cub config)
 		return (ERROR);
 	if (is_map_closed(config) == ERROR)
 		return (ERROR);
-	if (check_allowed_chars(config)  == ERROR)
+	if (check_allowed_chars(config) == ERROR)
 		return (ERROR);
 	return (OK);
 }
