@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/09 11:43:53 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/23 17:17:50 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/24 14:26:05 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,8 @@ int	check_map(t_cub config)
 	if (check_blank_lines_in_map(config) == ERROR)
 		return (ERROR);
 	if (is_map_closed(config) == ERROR)
+		return (ERROR);
+	if (check_allowed_chars(config)  == ERROR)
 		return (ERROR);
 	return (OK);
 }
