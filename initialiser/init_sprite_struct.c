@@ -59,6 +59,8 @@ void	init_sprite(t_settings *settings)
 	t_sprite	*sprite;
 
 	sprite = malloc(sizeof(t_sprite));
+	settings->game->sprite = sprite;
+	count_sprites(settings);
 	sprite->x = malloc(sizeof(float) * sprite->num);
 	sprite->y = malloc(sizeof(float) * sprite->num);
 	sprite->distance = malloc(sizeof(float) * sprite->num);
@@ -69,7 +71,5 @@ void	init_sprite(t_settings *settings)
 	sprite->screen_pos_x = malloc(sizeof(float) * sprite->num);
 	sprite->right_x = malloc(sizeof(float) * sprite->num);
 	sprite->left_x = malloc(sizeof(float) * sprite->num);
-	settings->game->sprite = sprite;
-	count_sprites(settings);
 	init_sprite_position(settings, sprite);
 }
