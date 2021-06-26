@@ -6,7 +6,7 @@
 #    By: ksmorozo <ksmorozo@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/02/24 11:23:42 by ksmorozo      #+#    #+#                  #
-#    Updated: 2021/06/26 15:32:21 by ksmorozo      ########   odam.nl          #
+#    Updated: 2021/06/26 17:07:18 by ksmorozo      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,11 +56,14 @@ CFLAGS = -g -Wall -Wextra -Werror
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(HEADER)
+$(NAME): $(OBJ)
 	make -C $(MINILIBX_DIR)
 	make -C $(LIBFT_DIR)
 	gcc $(CFLAGS) $(OBJ) $(LIBFT_DIR)$(LIBFT) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
-	mv $(MINILIBX_DIR)$(MINILIBX) .
+	cp -rf $(MINILIBX_DIR)$(MINILIBX) .
+
+%.o: %.c $(HEADER)
+	gcc $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJ) $(MINILIBX)
