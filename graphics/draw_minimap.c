@@ -104,8 +104,11 @@ void	draw_ray(t_settings *settings, float final_x, float final_y)
 
 void	draw_minimap_components(t_settings *settings)
 {
-	draw_line(settings);
-	draw_minimap(settings);
-	draw_minimap_player(settings);
-	draw_minimap_sprite(settings);
+	if (settings->config->x_res >= 400 && settings->config->y_res >= 400)
+	{
+		draw_line(settings);
+		draw_minimap(settings);
+		draw_minimap_player(settings);
+		draw_minimap_sprite(settings);
+	}
 }
