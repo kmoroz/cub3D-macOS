@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/08 13:15:43 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/26 15:30:16 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/26 17:17:11 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # define TWO_PI 6.28318530
 # define FOV_ANGLE 1.0471975500000001
 # define WALL_STRIP_WIDTH 10
-# define SCALE_FACTOR 0.4
+# define SCALE_FACTOR 0.3
 # define TILE_SIZE 30
 # define NUM_TEXTURES 6
 # define NO_TEXTURE 0
