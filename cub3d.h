@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/08 13:15:43 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/24 14:26:53 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/26 15:30:16 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,5 +221,9 @@ int		x_button_hook(void);
 void	init_wall(t_settings *settings);
 int		check_config_file(t_cub config);
 int		check_allowed_chars(t_cub config);
+int		parse_floor_colour(t_cub *game_config, char *line);
+int		parse_ceiling_colour(t_cub *game_config, char *line);
+int		parse_sprite_texture(t_cub *game_config, char *line);
+int		parse_wall_texture(t_cub *game_config, char *line);
 
 #endif
