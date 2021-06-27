@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/08 13:15:43 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/26 17:17:11 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/27 15:22:43 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,7 +211,7 @@ void	find_ray_direction(t_settings *settings);
 int		check_wall_collision(t_settings *settings, float next_x, float next_y);
 void	reset_ray_struct(t_ray *ray);
 void	draw_minimap_components(t_settings *settings);
-void	draw_a_square(t_window_settings *window, float x, float y, int color);
+void	draw_a_square(t_window_settings *window, float x, float y, int colour);
 void	init_player(t_settings *settings);
 void	init_sprite(t_settings *settings);
 void	init_ray(t_settings *settings);
@@ -225,5 +225,6 @@ int		parse_floor_colour(t_cub *game_config, char *line);
 int		parse_ceiling_colour(t_cub *game_config, char *line);
 int		parse_sprite_texture(t_cub *game_config, char *line);
 int		parse_wall_texture(t_cub *game_config, char *line);
+void	draw_a_circle(t_window_settings *window, float x, float y, int colour);
 
 #endif

@@ -19,7 +19,7 @@ void	my_mlx_pixel_put(t_window_settings *window, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	draw_a_square(t_window_settings *window, float x, float y, int color)
+void	draw_a_square(t_window_settings *window, float x, float y, int colour)
 {
 	float	start_x;
 	int		row_size;
@@ -32,10 +32,28 @@ void	draw_a_square(t_window_settings *window, float x, float y, int color)
 		row_size = TILE_SIZE * SCALE_FACTOR;
 		while (row_size >= 0)
 		{
-			my_mlx_pixel_put(window, start_x, y + count, color);
+			my_mlx_pixel_put(window, start_x, y + count, colour);
 			start_x++;
 			row_size--;
 		}
 		count++;
+	}
+}
+
+void	draw_a_circle(t_window_settings *window, float x, float y, int colour)
+{
+	float	i;
+	float	angle;
+	float	x1;
+	float	y1;
+
+	i = 0;
+	while (i < 360)
+	{
+		angle = i;
+		x1 = 1.5 * cos(angle * PI / 180);
+		y1 = 1.5 * sin(angle * PI / 180);
+		my_mlx_pixel_put(window, x + x1, y + y1, colour);
+		i += 0.1;
 	}
 }
