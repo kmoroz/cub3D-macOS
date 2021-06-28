@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/08 13:15:43 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/27 15:22:43 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/28 12:54:21 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,5 +226,6 @@ int		parse_ceiling_colour(t_cub *game_config, char *line);
 int		parse_sprite_texture(t_cub *game_config, char *line);
 int		parse_wall_texture(t_cub *game_config, char *line);
 void	draw_a_circle(t_window_settings *window, float x, float y, int colour);
+int		is_rgb_present(t_cub config);
 
 #endif

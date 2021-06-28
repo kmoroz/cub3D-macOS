@@ -51,10 +51,7 @@ int	check_config_file(t_cub config)
 		return (ERROR);
 	}
 	if (check_max_rgb_value(config) == ERROR)
-	{
-		printf("Error\n\U0001f4a9 Max RGB value exceeded \U0001f4a9\n");
 		return (ERROR);
-	}
 	if (config.x_res == 0 || config.y_res == 0)
 	{
 		printf("Error\n\U0001f4a9 Resolution cannot be zero \U0001f4a9\n");
@@ -64,5 +61,7 @@ int	check_config_file(t_cub config)
 		return (ERROR);
 	if (verify_num_of_type_identifiers(config) == ERROR)
 		return (ERROR);
-	return (1);
+	if (is_rgb_present(config) == ERROR)
+		return (ERROR);
+	return (OK);
 }

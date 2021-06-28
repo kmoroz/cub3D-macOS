@@ -10,6 +10,12 @@ void	init_texture_path(t_cub *config)
 	config->no_texture = 0;
 	config->x_res = '\0';
 	config->y_res = '\0';
+	config->floor_colour[0] = -1;
+	config->floor_colour[1] = -1;
+	config->floor_colour[2] = -1;
+	config->ceiling_colour[0] = -1;
+	config->ceiling_colour[1] = -1;
+	config->ceiling_colour[2] = -1;
 }
 
 void	init_config(t_settings *settings, t_cub *config)
