@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/08 13:09:14 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/26 15:45:24 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/28 13:27:03 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,12 @@
 int	parse_res(t_cub *game_config, char *line)
 {
 	if (*line == 'R')
-	{
+	{	
+		line++;
 		while (*line)
 		{
+			if (veirify_resolution_input(*line) == ERROR)
+				return (ERROR);
 			while (ft_isdigit(*line))
 			{
 				game_config->x_res = (game_config->x_res * 10) + (*line - '0');
@@ -70,14 +73,19 @@ int	parse_type_identifiers(t_cub *game_config, char *line)
 {
 	if (!game_config->map)
 	{
-		parse_res(game_config, line);
+		if (parse_res(game_config, line) == ERROR)
+		{
+			printf("Error\n\U0001f4a9 Please check ");
+			printf("the resolution values provided. \U0001f4a9\n");
+			return (ERROR);
+		}
 		parse_wall_texture(game_config, line);
 		parse_sprite_texture(game_config, line);
 		if (parse_floor_colour(game_config, line) == ERROR
 			|| parse_ceiling_colour(game_config, line) == ERROR)
 		{
-			printf("Error\n\U0001f4a9 Please check \
-				the RGB values provided. \U0001f4a9\n");
+			printf("Error\n\U0001f4a9 Please check ");
+			printf("the RGB values provided. \U0001f4a9\n");
 			return (ERROR);
 		}
 	}
