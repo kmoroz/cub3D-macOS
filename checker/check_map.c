@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/09 11:43:53 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/24 14:54:48 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/28 14:20:35 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int	is_map_closed(t_cub config)
 	{
 		while ((temp->row[x]))
 		{
-			if (ft_strchr("02", temp->row[x])
+			if (ft_strchr("02NSWE", temp->row[x])
 				&& is_zero_two_open(config, x, y) == ERROR)
 				return (ERROR);
 			x++;
