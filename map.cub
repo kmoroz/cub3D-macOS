@@ -1,5 +1,5 @@
 
-R 800 800
+R 500 500
 NO ./textures/redbrick.xpm
 SO ./textures/greybrick.xpm
 WE ./textures/greywall.xpm

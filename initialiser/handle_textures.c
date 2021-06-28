@@ -6,12 +6,12 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/20 11:49:57 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/23 11:59:24 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/28 11:20:27 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-#include "mlx/mlx.h"
+#include "../cub3d.h"
+#include "../mlx/mlx.h"
 
 void	load_sprite_texture(t_settings *settings)
 {

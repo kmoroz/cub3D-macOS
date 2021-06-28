@@ -6,16 +6,13 @@
 #    By: ksmorozo <ksmorozo@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/02/24 11:23:42 by ksmorozo      #+#    #+#                  #
-#    Updated: 2021/06/27 16:54:59 by ksmorozo      ########   odam.nl          #
+#    Updated: 2021/06/28 11:20:00 by ksmorozo      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
-SRC_FILE = main.c event_handlers.c \
+SRC_FILE = main.c \
 get_next_line/get_next_line.c \
-handle_textures.c \
-update_player.c cast_rays.c \
-cast_rays_utils.c \
 
 CHECKER_DIR = checker/
 CHECKER_SRC_FILE = check_map.c check_resolution.c \
@@ -26,7 +23,7 @@ check_texture.c check_map_utils.c
 INIT_DIR = initialiser/
 INIT_SRC_FILE = init_sprite_struct.c init_config_struct.c \
 init_wall_struct.c init_ray_struct.c \
-init_player_struct.c
+init_player_struct.c handle_textures.c
 
 GRAPHICS_DIR = graphics/
 GRAPHICS_SRC_FILE = draw_sprite.c \
@@ -38,6 +35,10 @@ PARSER_DIR = parser/
 PARSER_SRC_FILE = parser.c parse_texture.c \
 parse_ceiling_floor.c
 
+GAME_ENGINE_DIR = game_engine/
+GAME_ENGINE_SRC_FILE = update_player.c cast_rays.c \
+cast_rays_utils.c event_handlers.c
+
 MINILIBX_DIR = mlx/
 MINILIBX = libmlx.dylib
 
@@ -48,7 +49,8 @@ OBJ = $(SRC_FILE:.c=.o) \
 $(addprefix $(CHECKER_DIR), $(CHECKER_SRC_FILE:.c=.o)) \
 $(addprefix $(INIT_DIR), $(INIT_SRC_FILE:.c=.o)) \
 $(addprefix $(GRAPHICS_DIR), $(GRAPHICS_SRC_FILE:.c=.o)) \
-$(addprefix $(PARSER_DIR), $(PARSER_SRC_FILE:.c=.o))
+$(addprefix $(PARSER_DIR), $(PARSER_SRC_FILE:.c=.o)) \
+$(addprefix $(GAME_ENGINE_DIR), $(GAME_ENGINE_SRC_FILE:.c=.o))
 
 HEADER = cub3d.h
 

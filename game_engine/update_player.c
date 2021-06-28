@@ -1,5 +1,5 @@
-#include "cub3d.h"
-#include "libft/libft.h"
+#include "../cub3d.h"
+#include "../libft/libft.h"
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h> //for exit

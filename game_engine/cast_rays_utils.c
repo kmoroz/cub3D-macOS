@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "../cub3d.h"
 
 float	calculate_distance(float x, float y,
 	float intersection_x, float intersection_y)

@@ -6,15 +6,15 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/14 18:47:56 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/23 16:04:29 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/28 11:24:20 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-#include "libft/libft.h"
+#include "../cub3d.h"
+#include "../libft/libft.h"
 #include <stdio.h>
 #include <math.h>
-#include <stdlib.h> //for exit
+#include <stdlib.h>
 
 int	x_button_hook(void)
 {
