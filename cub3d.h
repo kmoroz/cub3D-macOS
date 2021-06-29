@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/08 13:15:43 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/29 14:51:40 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/29 16:26:16 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,14 @@
 # define OK 1
 # define EPSILON 0.2
 
-enum	e_error	{MALLOC = 1};
+enum	e_error
+{
+	MALLOC = 1,
+	IDENTIFIER_ILLEGAL = 2,
+	WRONG_RES = 3,
+	MAP_ON_TOP = 4,
+	FILE_MISSING = 5,
+} t_error;
 
 typedef struct s_cub
 {
@@ -231,5 +238,7 @@ void	draw_a_circle(t_window_settings *window, float x, float y, int colour);
 int		is_rgb_present(t_cub config);
 int		veirify_resolution_input(char c);
 void	ft_error(int error_code);
+int		is_type_identifier_allowed(char *line);
+void	does_file_exist(t_cub config);
 
 #endif
