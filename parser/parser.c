@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/08 13:09:14 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/28 15:45:17 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/29 14:52:41 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ int	parse_map(t_cub *game_config, char *line)
 				return (ERROR);
 			if (*line)
 				game_config->map = ft_lstnew(line);
+			if (*line && !game_config->map)
+				ft_error(MALLOC);
 			return (OK);
 		}
 		current = game_config->map;
@@ -63,8 +65,9 @@ int	parse_map(t_cub *game_config, char *line)
 			current = current->next;
 		}
 		current->next = ft_lstnew(line);
-		printf("%s\n", line);
-		return (1);
+		if (!current->next)
+			ft_error(MALLOC);
+		return (OK);
 	}
 	return (OK);
 }

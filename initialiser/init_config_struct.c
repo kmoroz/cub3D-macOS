@@ -21,5 +21,7 @@ void	init_texture_path(t_cub *config)
 void	init_config(t_settings *settings, t_cub *config)
 {
 	settings->config = malloc(sizeof(t_cub));
+	if (!settings->config)
+		ft_error(MALLOC);
 	settings->config = config;
 }

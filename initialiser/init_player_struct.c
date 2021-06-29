@@ -64,6 +64,8 @@ void	init_player(t_settings *settings)
 	t_player	*player;
 
 	player = malloc(sizeof(t_player));
+	if (!player)
+		ft_error(MALLOC);
 	player->turn_direction = 0;
 	player->walk_direction = 0;
 	player->walk_speed = 4;

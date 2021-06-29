@@ -6,7 +6,7 @@
 #    By: ksmorozo <ksmorozo@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/02/24 11:23:42 by ksmorozo      #+#    #+#                  #
-#    Updated: 2021/06/28 11:20:00 by ksmorozo      ########   odam.nl          #
+#    Updated: 2021/06/29 13:15:43 by ksmorozo      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ CHECKER_DIR = checker/
 CHECKER_SRC_FILE = check_map.c check_resolution.c \
 check_rgb.c check_cub_file.c \
 check_arguments.c \
-check_texture.c check_map_utils.c
+check_texture.c check_map_utils.c \
+ft_error.c
 
 INIT_DIR = initialiser/
 INIT_SRC_FILE = init_sprite_struct.c init_config_struct.c \

@@ -14,7 +14,7 @@ int	parse_wall_texture(t_cub *game_config, char *line)
 		{
 			location = ft_strdup(line);
 			if (!location)
-				return (ERROR);
+				ft_error(MALLOC);
 			if (first_char == 'N')
 				game_config->no_texture = location;
 			if (first_char == 'S')
@@ -44,7 +44,7 @@ int	parse_sprite_texture(t_cub *game_config, char *line)
 			{
 				location = ft_strdup(line);
 				if (!location)
-					return (ERROR);
+					ft_error(MALLOC);
 				game_config->sp_texture = location;
 				return (OK);
 			}

@@ -27,6 +27,8 @@ void	init_ray(t_settings *settings)
 	t_ray	*ray;
 
 	ray = malloc(sizeof(t_ray));
+	if (!ray)
+		ft_error(MALLOC);
 	ray->ray_angle = 0;
 	ray->vertical_wall_hit_x = 0;
 	ray->vertical_wall_hit_y = 0;
@@ -34,5 +36,7 @@ void	init_ray(t_settings *settings)
 	ray->horizontal_wall_hit_y = 0;
 	ray->was_hit_vertical = 0;
 	ray->distance = malloc(sizeof(float) * settings->config->x_res);
+	if (!ray->distance)
+		ft_error(MALLOC);
 	settings->ray = ray;
 }

@@ -59,6 +59,8 @@ void	init_sprite(t_settings *settings)
 	t_sprite	*sprite;
 
 	sprite = malloc(sizeof(t_sprite));
+	if (!sprite)
+		ft_error(MALLOC);
 	settings->game->sprite = sprite;
 	count_sprites(settings);
 	sprite->x = malloc(sizeof(float) * sprite->num);
@@ -71,5 +73,10 @@ void	init_sprite(t_settings *settings)
 	sprite->screen_pos_x = malloc(sizeof(float) * sprite->num);
 	sprite->right_x = malloc(sizeof(float) * sprite->num);
 	sprite->left_x = malloc(sizeof(float) * sprite->num);
+	if (!sprite->x || !sprite->y || !sprite->distance || !sprite->visible
+		|| !sprite->angle || !sprite->top || !sprite->bottom
+		|| !sprite->screen_pos_x || !sprite->right_x
+		|| !sprite->left_x)
+		ft_error(MALLOC);
 	init_sprite_position(settings, sprite);
 }

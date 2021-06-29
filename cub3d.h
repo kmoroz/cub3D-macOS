@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/08 13:15:43 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/28 13:14:10 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/29 14:51:40 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@
 # define ERROR -1
 # define OK 1
 # define EPSILON 0.2
+
+enum	e_error	{MALLOC = 1};
 
 typedef struct s_cub
 {
@@ -228,5 +230,6 @@ int		parse_wall_texture(t_cub *game_config, char *line);
 void	draw_a_circle(t_window_settings *window, float x, float y, int colour);
 int		is_rgb_present(t_cub config);
 int		veirify_resolution_input(char c);
+void	ft_error(int error_code);
 
 #endif

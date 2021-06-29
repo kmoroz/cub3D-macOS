@@ -6,6 +6,8 @@ void	init_wall(t_settings *settings)
 	t_wall	*wall;
 
 	wall = malloc(sizeof(t_wall));
+	if (!wall)
+		ft_error(MALLOC);
 	settings->game->wall = wall;
 	wall->wall_top_pixel = 0;
 	wall->wall_strip_height = 0;
