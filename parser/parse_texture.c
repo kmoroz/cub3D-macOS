@@ -5,8 +5,8 @@ int	parse_wall_texture(t_cub *game_config, char *line)
 	char	first_char;
 	char	*location;
 
-	if (ft_strnstr(line, "NO .", 4) || ft_strnstr(line, "SO .", 4)
-		|| ft_strnstr(line, "WE .", 4) || ft_strnstr(line, "EA .", 4))
+	if (ft_strnstr(line, "NO ", 3) || ft_strnstr(line, "SO ", 3)
+		|| ft_strnstr(line, "WE ", 3) || ft_strnstr(line, "EA ", 3))
 	{
 		first_char = *line;
 		line += 3;
@@ -33,16 +33,21 @@ int	parse_sprite_texture(t_cub *game_config, char *line)
 {
 	char	*location;
 
-	if (ft_strnstr(line, "S .", 3))
+	if (ft_strnstr(line, "S ", 2))
 	{
-		line += 2;
-		while (!ft_isspace(*line))
+		line++;
+		while (*line)
 		{
-			location = ft_strdup(line);
-			if (!location)
-				return (ERROR);
-			game_config->sp_texture = location;
-			return (1);
+			if (ft_isspace(*line))
+				line++;
+			else
+			{
+				location = ft_strdup(line);
+				if (!location)
+					return (ERROR);
+				game_config->sp_texture = location;
+				return (OK);
+			}
 		}
 	}
 	return (OK);

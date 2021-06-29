@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/08 13:09:14 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/28 13:27:03 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/28 15:45:17 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	parse_res(t_cub *game_config, char *line)
 {
 	if (*line == 'R')
 	{	
-		line++;
+		line += 2;
 		while (*line)
 		{
 			if (veirify_resolution_input(*line) == ERROR)
