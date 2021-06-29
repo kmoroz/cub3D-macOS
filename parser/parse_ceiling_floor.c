@@ -35,10 +35,10 @@ int	parse_ceiling_colour(t_cub *game_config, char *line)
 	{
 		line += 2;
 		index = 0;
-		if (veirify_rgb_input(*line) == ERROR)
-			return (ERROR);
 		while (*line && index < 3)
 		{
+			if (veirify_rgb_input(*line) == ERROR)
+				return (ERROR);
 			while (ft_isdigit(*line) && *line != ',')
 			{
 				if (game_config->ceiling_colour[index] == -1)

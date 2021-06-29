@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/08 13:09:14 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/29 14:52:41 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/29 15:53:35 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,10 @@ int	parse_type_identifiers(t_cub *game_config, char *line)
 {
 	if (!game_config->map)
 	{
+		if (ft_isalpha(*line) && is_type_identifier_allowed(line) == ERROR)
+			ft_error(IDENTIFIER_ILLEGAL);
 		if (parse_res(game_config, line) == ERROR)
-		{
-			printf("Error\n\U0001f4a9 Please check ");
-			printf("the resolution values provided. \U0001f4a9\n");
-			return (ERROR);
-		}
+			ft_error(WRONG_RES);
 		parse_wall_texture(game_config, line);
 		parse_sprite_texture(game_config, line);
 		if (parse_floor_colour(game_config, line) == ERROR
@@ -110,11 +108,7 @@ int	parse_file(char *file, t_cub *game_config)
 		if (parse_type_identifiers(game_config, line) == ERROR)
 			return (ERROR);
 		if (parse_map(game_config, line) == ERROR)
-		{
-			printf("Error\n\U0001f4a9 Incorrect number of type identifiers \
-				OR map isn't at the bottom of file \U0001f4a9\n");
-			return (ERROR);
-		}
+			ft_error(MAP_ON_TOP);
 		free(line);
 	}
 	return (OK);
