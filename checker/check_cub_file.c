@@ -22,6 +22,16 @@ void	count_type_identifiers(t_cub *config, char *line)
 		config->type_identifier_num++;
 }
 
+int	is_type_identifier_allowed(char *line)
+{
+	if (ft_strnstr(line, "NO", 2) || ft_strnstr(line, "SO", 2)
+		|| ft_strnstr(line, "EA", 2) || ft_strnstr(line, "WE", 2)
+		|| ft_strnstr(line, "S ", 2) || ft_strnstr(line, "F", 1)
+		|| ft_strnstr(line, "C", 1) || ft_strnstr(line, "R", 1))
+		return (OK);
+	return (ERROR);
+}
+
 int	verify_num_of_type_identifiers(t_cub config)
 {
 	if (config.type_identifier_num < 8)
@@ -63,5 +73,6 @@ int	check_config_file(t_cub config)
 		return (ERROR);
 	if (is_rgb_present(config) == ERROR)
 		return (ERROR);
+	does_file_exist(config);
 	return (OK);
 }
