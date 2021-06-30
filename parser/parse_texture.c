@@ -10,7 +10,7 @@ int	parse_wall_texture(t_cub *game_config, char *line)
 	{
 		first_char = *line;
 		line += 3;
-		while (!ft_isspace(*line))
+		while (!ft_isspace(*line) && *line)
 		{
 			location = ft_strdup(line);
 			if (!location)

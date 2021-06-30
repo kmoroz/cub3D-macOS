@@ -1,7 +1,7 @@
 #include "../cub3d.h"
 #include <stdio.h>
 
-int	check_max_rgb_value(t_cub config)
+void	check_max_rgb_value(t_cub config)
 {
 	int	count;
 
@@ -10,13 +10,9 @@ int	check_max_rgb_value(t_cub config)
 	{
 		if (config.floor_colour[count] > 255
 			|| config.ceiling_colour[count] > 255)
-		{
-			printf("Error\n\U0001f4a9 Max RGB value exceeded \U0001f4a9\n");
-			return (ERROR);
-		}
+			ft_error(RGB_EXCEEDED);
 		count++;
 	}
-	return (OK);
 }
 
 int	veirify_rgb_input(char c)
@@ -28,7 +24,7 @@ int	veirify_rgb_input(char c)
 	return (OK);
 }
 
-int	is_rgb_present(t_cub config)
+void	is_rgb_present(t_cub config)
 {
 	int	count;
 
@@ -37,11 +33,7 @@ int	is_rgb_present(t_cub config)
 	{
 		if (config.floor_colour[count] == ERROR
 			|| config.ceiling_colour[count] == ERROR)
-		{
-			printf("Error\n\U0001f4a9 RGB value missing \U0001f4a9\n");
-			return (ERROR);
-		}
+			ft_error(RGB_INVALID);
 		count++;
 	}
-	return (OK);
 }

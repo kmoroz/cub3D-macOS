@@ -1,6 +1,6 @@
 #include "../cub3d.h"
 
-int	check_player(t_cub config)
+void	check_player(t_cub config)
 {
 	int		x;
 	int		y;
@@ -15,7 +15,7 @@ int	check_player(t_cub config)
 		{
 			if (ft_isalpha(config.map->row[x])
 				&& !ft_strchr("NSEW", config.map->row[x]))
-				return (ERROR);
+				ft_error(PLAYER_INVALID);
 			else if (ft_strchr("NSEW", config.map->row[x]))
 				count++;
 			x++;
@@ -24,9 +24,8 @@ int	check_player(t_cub config)
 		y++;
 		x = 0;
 	}
-	if (count == 1)
-		return (OK);
-	return (ERROR);
+	if (count != 1)
+		ft_error(PLAYER_INVALID);
 }
 
 int	check_allowed_chars(t_cub config)

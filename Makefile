@@ -6,11 +6,11 @@
 #    By: ksmorozo <ksmorozo@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/02/24 11:23:42 by ksmorozo      #+#    #+#                  #
-#    Updated: 2021/06/29 13:15:43 by ksmorozo      ########   odam.nl          #
+#    Updated: 2021/06/30 08:56:33 by ksmorozo      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = cub3d
+NAME = cub3D
 SRC_FILE = main.c \
 get_next_line/get_next_line.c \
 

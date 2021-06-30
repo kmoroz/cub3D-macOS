@@ -32,47 +32,23 @@ int	is_type_identifier_allowed(char *line)
 	return (ERROR);
 }
 
-int	verify_num_of_type_identifiers(t_cub config)
+void	verify_num_of_type_identifiers(t_cub config)
 {
 	if (config.type_identifier_num < 8)
-	{
-		printf("Error\n\U0001f4a9 Type identifier missing \U0001f4a9\n");
-		return (ERROR);
-	}
+		ft_error(FEW_IDENTIFIERS);
 	if (config.type_identifier_num > 8)
-	{
-		printf("Error\n\U0001f4a9 Too many type identifiers \U0001f4a9\n");
-		return (ERROR);
-	}
-	else
-		return (OK);
+		ft_error(MANY_IDENTIFIERS);
 }
 
-int	check_config_file(t_cub config)
+void	check_config_file(t_cub config)
 {
-	if (check_player(config) == ERROR)
-	{
-		printf("Error\n\U0001f4a9 Invalid player \U0001f4a9\n");
-		return (ERROR);
-	}
-	if (check_map(config) == ERROR)
-	{
-		printf("Error\n\U0001f4a9 Invalid map \U0001f4a9\n");
-		return (ERROR);
-	}
-	if (check_max_rgb_value(config) == ERROR)
-		return (ERROR);
+	check_player(config);
+	check_map(config);
+	check_max_rgb_value(config);
 	if (config.x_res == 0 || config.y_res == 0)
-	{
-		printf("Error\n\U0001f4a9 Resolution cannot be zero \U0001f4a9\n");
-		return (ERROR);
-	}
-	if (is_texture_provided(config) == ERROR)
-		return (ERROR);
-	if (verify_num_of_type_identifiers(config) == ERROR)
-		return (ERROR);
-	if (is_rgb_present(config) == ERROR)
-		return (ERROR);
+		ft_error(ZERO_RES);
+	is_texture_provided(config);
+	verify_num_of_type_identifiers(config);
+	is_rgb_present(config);
 	does_file_exist(config);
-	return (OK);
 }

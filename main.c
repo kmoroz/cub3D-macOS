@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/14 17:53:04 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/29 14:59:17 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/30 14:41:48 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,10 @@ int	main(int argc, char **argv)
 	t_game_state		game;
 	t_window_settings	window;
 
-	if (check_args(argc, argv) == ERROR)
-		return (ERROR);
+	check_args(argc, argv);
 	init_texture_path(&config);
-	if (parse_file(argv[1], &config) == ERROR)
-		return (ERROR);
-	if (check_config_file(config) == ERROR)
-		return (ERROR);
+	parse_file(argv[1], &config);
+	check_config_file(config);
 	window = set_up_window(&config);
 	set_up_game(&window, &game, &config);
 	mlx_loop(window.mlx);

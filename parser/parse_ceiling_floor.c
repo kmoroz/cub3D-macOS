@@ -1,6 +1,6 @@
 #include "../cub3d.h"
 
-int	parse_floor_colour(t_cub *game_config, char *line)
+void	parse_floor_colour(t_cub *game_config, char *line)
 {
 	int	index;
 
@@ -8,8 +8,6 @@ int	parse_floor_colour(t_cub *game_config, char *line)
 	{
 		line += 2;
 		index = 0;
-		if (veirify_rgb_input(*line) == ERROR)
-			return (ERROR);
 		while (*line && index < 3)
 		{
 			while (ft_isdigit(*line) && *line != ',')
@@ -20,14 +18,15 @@ int	parse_floor_colour(t_cub *game_config, char *line)
 					= (game_config->floor_colour[index] * 10) + (*line - '0');
 				line++;
 			}
+			if (veirify_rgb_input(*line) == ERROR)
+				ft_error(RGB_INVALID);
 			index++;
 			line++;
 		}
 	}
-	return (OK);
 }
 
-int	parse_ceiling_colour(t_cub *game_config, char *line)
+void	parse_ceiling_colour(t_cub *game_config, char *line)
 {
 	int	index;
 
@@ -37,8 +36,6 @@ int	parse_ceiling_colour(t_cub *game_config, char *line)
 		index = 0;
 		while (*line && index < 3)
 		{
-			if (veirify_rgb_input(*line) == ERROR)
-				return (ERROR);
 			while (ft_isdigit(*line) && *line != ',')
 			{
 				if (game_config->ceiling_colour[index] == -1)
@@ -47,9 +44,10 @@ int	parse_ceiling_colour(t_cub *game_config, char *line)
 					= (game_config->ceiling_colour[index] * 10) + (*line - '0');
 				line++;
 			}
+			if (veirify_rgb_input(*line) == ERROR)
+				ft_error(RGB_INVALID);
 			index++;
 			line++;
 		}
 	}
-	return (OK);
 }

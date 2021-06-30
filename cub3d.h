@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/08 13:15:43 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/29 16:26:16 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/06/30 14:42:16 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,16 @@ enum	e_error
 	WRONG_RES = 3,
 	MAP_ON_TOP = 4,
 	FILE_MISSING = 5,
+	RGB_INVALID = 6,
+	ARG_COUNT_WRONG = 7,
+	EXTENSION_INVALID = 8,
+	ZERO_RES = 9,
+	PLAYER_INVALID = 10,
+	MAP_INVALID = 11,
+	RGB_EXCEEDED = 12,
+	ZERO_TEXTURE = 13,
+	MANY_IDENTIFIERS = 14,
+	FEW_IDENTIFIERS = 15,
 } t_error;
 
 typedef struct s_cub
@@ -175,7 +185,7 @@ typedef struct s_settings
 	t_ray				*ray;
 }				t_settings;
 
-int		parse_file(char *file, t_cub *config);
+void	parse_file(char *file, t_cub *config);
 int		key_press_handler(int keycode, t_settings *settings);
 int		key_release_handler(int keycode, t_settings *settings);
 int		refresh(t_settings *settings);
@@ -188,7 +198,7 @@ void	draw_ceiling(t_settings *settings);
 void	draw_floor(t_settings *settings);
 void	load_textures(t_settings *settings);
 int		choose_texture(t_settings *settings);
-int		check_args(int argc, char **argv);
+void	check_args(int argc, char **argv);
 float	calculate_distance(float x, float y,
 			float intersection_x, float intersection_y);
 void	render_sprite(t_settings *settings);
@@ -196,14 +206,13 @@ float	normalise_angle(float angle);
 void	my_mlx_pixel_put(t_window_settings *window, int x, int y, int color);
 int		get_colour(t_texture texture, int x, int y);
 void	verify_max_screen_size(t_window_settings window, t_cub *config);
-int		check_max_rgb_value(t_cub config);
+void	check_max_rgb_value(t_cub config);
 int		veirify_rgb_input(char c);
 int		is_map_on_top(t_cub config);
 void	count_type_identifiers(t_cub *config, char *line);
-int		verify_num_of_type_identifiers(t_cub config);
-int		is_texture_provided(t_cub config);
-int		check_map(t_cub config);
-int		check_player(t_cub config);
+void	is_texture_provided(t_cub config);
+void	check_map(t_cub config);
+void	check_player(t_cub config);
 int		is_map_on_top(t_cub config);
 int		is_map_closed(t_cub config);
 int		is_zero_open(t_cub config, int x, int y);
@@ -228,14 +237,14 @@ void	init_config(t_settings *settings, t_cub *config);
 void	init_texture_path(t_cub *config);
 int		x_button_hook(void);
 void	init_wall(t_settings *settings);
-int		check_config_file(t_cub config);
+void	check_config_file(t_cub config);
 int		check_allowed_chars(t_cub config);
-int		parse_floor_colour(t_cub *game_config, char *line);
-int		parse_ceiling_colour(t_cub *game_config, char *line);
+void	parse_floor_colour(t_cub *game_config, char *line);
+void	parse_ceiling_colour(t_cub *game_config, char *line);
 int		parse_sprite_texture(t_cub *game_config, char *line);
 int		parse_wall_texture(t_cub *game_config, char *line);
 void	draw_a_circle(t_window_settings *window, float x, float y, int colour);
-int		is_rgb_present(t_cub config);
+void	is_rgb_present(t_cub config);
 int		veirify_resolution_input(char c);
 void	ft_error(int error_code);
 int		is_type_identifier_allowed(char *line);
