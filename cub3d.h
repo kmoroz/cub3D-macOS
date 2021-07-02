@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/08 13:15:43 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/30 14:42:16 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/07/02 13:38:59 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,9 +214,7 @@ void	is_texture_provided(t_cub config);
 void	check_map(t_cub config);
 void	check_player(t_cub config);
 int		is_map_on_top(t_cub config);
-int		is_map_closed(t_cub config);
 int		is_zero_open(t_cub config, int x, int y);
-int		check_blank_lines_in_map(t_cub config);
 int		is_line_last(t_cub config);
 void	swap_sprites(t_sprite *sprite, int i, int j);
 void	sort_sprites(t_settings *settings);
@@ -238,7 +236,7 @@ void	init_texture_path(t_cub *config);
 int		x_button_hook(void);
 void	init_wall(t_settings *settings);
 void	check_config_file(t_cub config);
-int		check_allowed_chars(t_cub config);
+void	check_allowed_chars(t_cub config);
 void	parse_floor_colour(t_cub *game_config, char *line);
 void	parse_ceiling_colour(t_cub *game_config, char *line);
 int		parse_sprite_texture(t_cub *game_config, char *line);

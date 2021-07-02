@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/09 11:43:53 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/30 13:40:28 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/07/02 13:38:36 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	is_line_last(t_cub config)
 	return (1);
 }
 
-int	check_blank_lines_in_map(t_cub config)
+void	check_blank_lines_in_map(t_cub config)
 {
 	int		x;
 
@@ -41,15 +41,14 @@ int	check_blank_lines_in_map(t_cub config)
 	while (config.map)
 	{
 		if (config.map->row[0] == '\0' && !is_line_last(config))
-			return (ERROR);
+			ft_error(MAP_INVALID);
 		x++;
 		config.map = config.map->next;
 		x = 0;
 	}
-	return (OK);
 }
 
-int	is_zero_two_open(t_cub config, int x, int y)
+void	is_char_open(t_cub config, int x, int y)
 {
 	int	current_row;
 	int	previous_row;
@@ -57,26 +56,28 @@ int	is_zero_two_open(t_cub config, int x, int y)
 	current_row = 0;
 	previous_row = y - 1;
 	if (previous_row < 0)
-		return (ERROR);
-	while (config.map && current_row <= y + 1)
+		ft_error(MAP_INVALID);
+	while (current_row <= y + 1)
 	{
+		if (!config.map)
+			ft_error(MAP_INVALID);
 		if (current_row == previous_row || current_row == y + 1)
 		{
 			if (!config.map->row[x] || ft_isspace(config.map->row[x]))
-				return (ERROR);
+				ft_error(MAP_INVALID);
 		}
 		if (current_row == y)
 		{
-			if (!config.map->row[x + 1] || ft_isspace(config.map->row[x + 1]))
-				return (ERROR);
+			if (!config.map->row[x + 1] || ft_isspace(config.map->row[x + 1])
+				|| ft_isspace(config.map->row[x - 1]) || (x - 1) < 0)
+				ft_error(MAP_INVALID);
 		}
 		config.map = config.map->next;
 		current_row++;
 	}
-	return (1);
 }
 
-int	is_map_closed(t_cub config)
+void	is_map_closed(t_cub config)
 {
 	int		x;
 	int		y;
@@ -91,24 +92,19 @@ int	is_map_closed(t_cub config)
 	{
 		while ((temp->row[x]))
 		{
-			if (ft_strchr("02NSWE", temp->row[x])
-				&& is_zero_two_open(config, x, y) == ERROR)
-				return (ERROR);
+			if (ft_strchr("02NSWE", temp->row[x]))
+				is_char_open(config, x, y);
 			x++;
 		}
 		temp = temp->next;
 		y++;
 		x = 0;
 	}
-	return (1);
 }
 
 void	check_map(t_cub config)
 {
-	if (check_blank_lines_in_map(config) == ERROR)
-		ft_error(MAP_INVALID);
-	if (is_map_closed(config) == ERROR)
-		ft_error(MAP_INVALID);
-	if (check_allowed_chars(config) == ERROR)
-		ft_error(MAP_INVALID);
+	check_blank_lines_in_map(config);
+	is_map_closed(config);
+	check_allowed_chars(config);
 }

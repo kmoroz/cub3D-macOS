@@ -28,7 +28,7 @@ void	check_player(t_cub config)
 		ft_error(PLAYER_INVALID);
 }
 
-int	check_allowed_chars(t_cub config)
+void	check_allowed_chars(t_cub config)
 {
 	int		x;
 	int		y;
@@ -43,13 +43,12 @@ int	check_allowed_chars(t_cub config)
 				|| ft_isspace(config.map->row[x]))
 				x++;
 			else
-				return (ERROR);
+				ft_error(MAP_INVALID);
 		}
 		config.map = config.map->next;
 		y++;
 		x = 0;
 	}
-	return (OK);
 }
 
 int	is_map_on_top(t_cub config)
