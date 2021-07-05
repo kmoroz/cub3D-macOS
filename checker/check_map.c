@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/09 11:43:53 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/07/02 13:38:36 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/07/05 09:23:40 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,10 @@ void	is_map_closed(t_cub config)
 {
 	int		x;
 	int		y;
-	int		result;
 	t_list	*temp;
 
 	x = 0;
 	y = 0;
-	result = 0;
 	temp = config.map;
 	while (temp)
 	{
