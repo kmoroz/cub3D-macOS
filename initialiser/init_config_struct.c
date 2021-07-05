@@ -16,6 +16,7 @@ void	init_texture_path(t_cub *config)
 	config->ceiling_colour[0] = -1;
 	config->ceiling_colour[1] = -1;
 	config->ceiling_colour[2] = -1;
+	config->map = 0;
 }
 
 void	init_config(t_settings *settings, t_cub *config)
