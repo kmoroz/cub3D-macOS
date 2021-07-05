@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/14 17:53:04 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/30 14:41:48 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/07/05 11:27:32 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,6 @@ void	set_up_game(t_window_settings *window,
 
 	settings = malloc(sizeof(t_settings));
 	if (!settings)
-		ft_error(MALLOC);
-	settings->window = malloc(sizeof(t_window_settings));
-	settings->game = malloc(sizeof(t_game_state));
-	if (!settings->window || !settings->game)
 		ft_error(MALLOC);
 	settings->game = game;
 	settings->window = window;
