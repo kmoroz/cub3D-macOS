@@ -67,6 +67,7 @@ void	init_player(t_settings *settings)
 	if (!player)
 		ft_error(MALLOC);
 	player->turn_direction = 0;
+	player->sidewalk = 0;
 	player->walk_direction = 0;
 	player->walk_speed = 4;
 	player->turn_speed = 20 * (PI / 180);

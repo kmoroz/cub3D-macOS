@@ -54,6 +54,25 @@ void	init_sprite_position(t_settings *settings, t_sprite *sprite)
 	}
 }
 
+void	init_sprite_values(t_sprite *sprite)
+{
+	int		count;
+
+	count = 0;
+	while (count < sprite->num)
+	{
+		sprite->distance[count] = 0;
+		sprite->angle[count] = 0;
+		sprite->top[count] = 0;
+		sprite->bottom[count] = 0;
+		sprite->visible[count] = 0;
+		sprite->screen_pos_x[count] = 0;
+		sprite->right_x[count] = 0;
+		sprite->left_x[count] = 0;
+		count++;
+	}
+}
+
 void	init_sprite(t_settings *settings)
 {
 	t_sprite	*sprite;
@@ -79,4 +98,5 @@ void	init_sprite(t_settings *settings)
 		|| !sprite->left_x)
 		ft_error(MALLOC);
 	init_sprite_position(settings, sprite);
+	init_sprite_values(sprite);
 }
