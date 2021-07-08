@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/08 13:15:43 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/07/02 13:38:59 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/07/08 18:16:44 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ typedef struct s_window_settings
 {
 	void		*mlx;
 	void		*img;
+	void		*img_iter;
 	void		*window;
 	void		*addr;
 	int			bits_per_pixel;
@@ -247,5 +248,6 @@ int		veirify_resolution_input(char c);
 void	ft_error(int error_code);
 int		is_type_identifier_allowed(char *line);
 void	does_file_exist(t_cub config);
+int		free_everything(t_settings *settings);
 
 #endif

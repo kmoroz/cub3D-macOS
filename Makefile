@@ -6,7 +6,7 @@
 #    By: ksmorozo <ksmorozo@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/02/24 11:23:42 by ksmorozo      #+#    #+#                  #
-#    Updated: 2021/06/30 08:56:33 by ksmorozo      ########   odam.nl          #
+#    Updated: 2021/07/08 18:19:21 by ksmorozo      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,9 @@ GAME_ENGINE_DIR = game_engine/
 GAME_ENGINE_SRC_FILE = update_player.c cast_rays.c \
 cast_rays_utils.c event_handlers.c
 
+FREEING_DIR = freeing/
+FREEING_SRC_FILE = free_everything.c
+
 MINILIBX_DIR = mlx/
 MINILIBX = libmlx.dylib
 
@@ -51,7 +54,8 @@ $(addprefix $(CHECKER_DIR), $(CHECKER_SRC_FILE:.c=.o)) \
 $(addprefix $(INIT_DIR), $(INIT_SRC_FILE:.c=.o)) \
 $(addprefix $(GRAPHICS_DIR), $(GRAPHICS_SRC_FILE:.c=.o)) \
 $(addprefix $(PARSER_DIR), $(PARSER_SRC_FILE:.c=.o)) \
-$(addprefix $(GAME_ENGINE_DIR), $(GAME_ENGINE_SRC_FILE:.c=.o))
+$(addprefix $(GAME_ENGINE_DIR), $(GAME_ENGINE_SRC_FILE:.c=.o)) \
+$(addprefix $(FREEING_DIR), $(FREEING_SRC_FILE:.c=.o))
 
 HEADER = cub3d.h
 
