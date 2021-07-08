@@ -6,12 +6,13 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/14 18:47:56 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/28 11:24:20 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/07/05 16:02:02 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 #include "../libft/libft.h"
+#include "../mlx/mlx.h"
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
@@ -26,7 +27,7 @@ int	x_button_hook(void)
 int	key_press_handler(int keycode, t_settings *settings)
 {
 	if (keycode == KEY_ESC)
-		exit (0);
+		exit(free_everything(settings));
 	else if (keycode == KEY_A)
 		settings->game->player->sidewalk = 1;
 	else if (keycode == KEY_D)
