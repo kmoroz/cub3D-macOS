@@ -6,7 +6,7 @@
 #    By: ksmorozo <ksmorozo@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/11/10 19:37:56 by ksmorozo      #+#    #+#                  #
-#    Updated: 2021/06/09 14:05:45 by ksmorozo      ########   odam.nl          #
+#    Updated: 2021/07/08 16:16:09 by ksmorozo      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ ft_strdup.c ft_lstnew.c \
 ft_itoa.c ft_strchr.c \
 ft_strnstr.c ft_strncmp.c \
 ft_isalnum.c ft_strlcpy.c \
-ft_strlen.c
+ft_strlen.c ft_strtrim.c
 
 HEADER_FILES = libft.h
 CFLAGS = -g -Wall -Wextra -Werror

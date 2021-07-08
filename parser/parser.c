@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/08 13:09:14 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/30 11:43:10 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/07/08 16:25:12 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,15 +91,19 @@ void	parse_file(char *file, t_cub *game_config)
 	int		fd;
 	char	*line;
 	int		line_status;
+	char	*trimmed_line;
 
 	fd = open(file, O_RDONLY);
 	line_status = 1;
 	while (line_status)
 	{
 		line_status = get_next_line(fd, &line);
-		count_type_identifiers(game_config, line);
-		parse_type_identifiers(game_config, line);
-		parse_map(game_config, line);
+		trimmed_line = ft_strtrim(line, " ");
+		count_type_identifiers(game_config, trimmed_line);
+		parse_type_identifiers(game_config, trimmed_line);
+		if (game_config->type_identifier_num == 8)
+			parse_map(game_config, line);
 		free(line);
+		free(trimmed_line);
 	}
 }

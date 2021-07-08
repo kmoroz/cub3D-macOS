@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/10 11:43:49 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/29 13:13:06 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/07/08 16:15:21 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ size_t	ft_strlen(const char *str);
 int		ft_strncmp(const void *ptr1, const void *ptr2, size_t num);
 char	*ft_strnstr(const char *s1, const char *s2, size_t n);
 t_list	*ft_lstnew(char *content);
+char	*ft_strtrim(char const *s1, char const *set);
 
 #endif
