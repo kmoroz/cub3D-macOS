@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/14 17:53:04 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/07/05 11:27:32 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/07/21 14:50:16 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@ t_window_settings	set_up_window(t_cub *config)
 	verify_max_screen_size(window, config);
 	window.window = mlx_new_window(window.mlx,
 			config->x_res, config->y_res, "cub3D");
+	window.img = mlx_new_image(window.mlx,
+			config->x_res, config->y_res);
+	window.addr = (int *)mlx_get_data_addr(window.img,
+			&window.bits_per_pixel, &window.line_length,
+			&window.endian);
 	return (window);
 }
 
@@ -41,7 +46,7 @@ void	set_up_game(t_window_settings *window,
 	init_ray(settings);
 	load_textures(settings);
 	init_sprite(settings);
-	mlx_hook(window->window, 17, 1L << 17, &x_button_hook, settings->window);
+	mlx_hook(window->window, 17, 1L << 17, &x_button_hook, settings);
 	mlx_hook(window->window, 2, 1L << 0, key_press_handler, settings);
 	mlx_hook(window->window, 3, 0, key_release_handler, settings);
 	mlx_loop_hook(window->mlx, refresh, settings);

@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/18 14:43:28 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/26 15:14:24 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/07/21 14:34:01 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,18 +83,17 @@ void	generate_wall_projection(t_settings *settings, int count)
 	draw_wall(settings, texture, count);
 }
 
-void	create_image(t_settings *settings)
+void	swap_image(t_settings *settings)
 {
-	settings->window->img = mlx_new_image(settings->window->mlx,
-			settings->config->x_res, settings->config->y_res);
-	settings->window->addr = (int *)mlx_get_data_addr(settings->window->img,
-			&settings->window->bits_per_pixel, &settings->window->line_length,
-			&settings->window->endian);
+	settings->window->img_iter = settings->window->img;
+	mlx_put_image_to_window(settings->window->mlx,
+		settings->window->window, settings->window->img_iter, 0, 0);
 }
 
 int	refresh(t_settings *settings)
 {
-	create_image(settings);
+	//if (!settings->window->img)
+	swap_image(settings);
 	draw_floor(settings);
 	draw_ceiling(settings);
 	cast_rays(settings);
@@ -102,6 +101,6 @@ int	refresh(t_settings *settings)
 	draw_minimap_components(settings);
 	mlx_put_image_to_window(settings->window->mlx,
 		settings->window->window, settings->window->img, 0, 0);
-	mlx_destroy_image(settings->window->mlx, settings->window->img);
+	//mlx_destroy_image(settings->window->mlx, settings->window->img);
 	return (0);
 }

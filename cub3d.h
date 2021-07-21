@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/08 13:15:43 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/07/08 18:16:44 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/07/21 14:46:47 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -234,7 +234,7 @@ void	init_sprite(t_settings *settings);
 void	init_ray(t_settings *settings);
 void	init_config(t_settings *settings, t_cub *config);
 void	init_texture_path(t_cub *config);
-int		x_button_hook(void);
+int		x_button_hook(t_settings *settings);
 void	init_wall(t_settings *settings);
 void	check_config_file(t_cub config);
 void	check_allowed_chars(t_cub config);

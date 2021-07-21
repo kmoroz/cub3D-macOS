@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/14 18:47:56 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/07/05 16:02:02 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/07/21 14:47:08 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 #include <math.h>
 #include <stdlib.h>
 
-int	x_button_hook(void)
+int	x_button_hook(t_settings *settings)
 {
 	printf("\n\U0000274C Red cross pressed. Game terminated. \U0000274C");
-	exit(0);
+	exit(free_everything(settings));
 	return (0);
 }
 

@@ -59,9 +59,8 @@ int	free_everything(t_settings *settings)
 	if (settings->window->mlx)
 	{
 		mlx_clear_window(settings->window->mlx, settings->window->window);
+		mlx_destroy_image(settings->window->mlx, settings->window->img);
 		mlx_destroy_window(settings->window->mlx, settings->window->window);
-		// if (settings->window->img)
-		// 	mlx_destroy_image(settings->window->mlx, settings->window->img);
 	}
 	free_sprite(settings->game->sprite);
 	free_texture(settings, settings->game->texture);
@@ -71,5 +70,5 @@ int	free_everything(t_settings *settings)
 	free(settings->game->wall);
 	free(settings->window->mlx);
 	free(settings);
-	return (OK);
+	return (0);
 }
