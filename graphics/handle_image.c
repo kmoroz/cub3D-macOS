@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/18 14:43:28 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/07/21 14:34:01 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/07/22 16:16:55 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	choose_texture(t_settings *settings)
 		return (WE_TEXTURE);
 	if (settings->ray->is_ray_facing_right && settings->ray->was_hit_vertical)
 		return (EA_TEXTURE);
-	return (ERROR); //remove
+	return (OK);
 }
 
 void	draw_wall(t_settings *settings, t_texture texture, int count)
@@ -92,7 +92,6 @@ void	swap_image(t_settings *settings)
 
 int	refresh(t_settings *settings)
 {
-	//if (!settings->window->img)
 	swap_image(settings);
 	draw_floor(settings);
 	draw_ceiling(settings);
@@ -101,6 +100,5 @@ int	refresh(t_settings *settings)
 	draw_minimap_components(settings);
 	mlx_put_image_to_window(settings->window->mlx,
 		settings->window->window, settings->window->img, 0, 0);
-	//mlx_destroy_image(settings->window->mlx, settings->window->img);
 	return (0);
 }

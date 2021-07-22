@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/01 13:21:02 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/05/25 12:59:21 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/07/22 16:20:55 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ft_strnstr(const char *s1, const char *s2, size_t n)
 	while (result != 0 && count_big_string < n
 		&& n - count_big_string >= ft_strlen(s2))
 	{
-		result = ft_strncmp((char*)s1 + count_big_string, s2, ft_strlen(s2));
+		result = ft_strncmp((char *)s1 + count_big_string, s2, ft_strlen(s2));
 		if (result == 0)
 			return ((char *)s1 + count_big_string);
 		count_big_string++;

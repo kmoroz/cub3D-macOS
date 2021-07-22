@@ -2,9 +2,8 @@
 #include "../libft/libft.h"
 #include <stdio.h>
 #include <math.h>
-#include <stdlib.h> //for exit
 
-int calculate_orientation_angle(float angle)
+int	calculate_orientation_angle(float angle)
 {
 	if ((angle > PI * 0.25) && (angle < 0.75 * PI))
 		return (1);
@@ -13,7 +12,8 @@ int calculate_orientation_angle(float angle)
 	return (0);
 }
 
-void check_sidewalk(t_player *player, float *next_x, float *next_y, float move_step)
+void	check_sidewalk(t_player *player,
+	float *next_x, float *next_y, float move_step)
 {
 	float	side_angle;
 	int		player_orientation;
@@ -30,7 +30,7 @@ void check_sidewalk(t_player *player, float *next_x, float *next_y, float move_s
 		else
 		{
 			*next_x = player->xpos + cos(side_angle) * -move_step;
-			*next_y = player->ypos - sin(side_angle) * -move_step;			
+			*next_y = player->ypos - sin(side_angle) * -move_step;
 		}
 	}
 }

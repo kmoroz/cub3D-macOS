@@ -9,7 +9,10 @@ void	map_error(int error_code)
 	if (error_code == MAP_INVALID)
 		printf("Error\n\U0001f4a9 Invalid map \U0001f4a9\n");
 	if (error_code == MAP_ON_TOP)
-		printf("Error\n\U0001f4a9 Map on top OR wrong number of identifiers \U0001f4a9\n");
+	{
+		printf("Error\n\U0001f4a9 Map on top ");
+		printf("OR wrong number of identifiers \U0001f4a9\n");
+	}
 }
 
 void	ft_error(int error_code)
