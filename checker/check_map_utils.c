@@ -53,7 +53,7 @@ void	check_allowed_chars(t_cub config)
 
 int	is_map_on_top(t_cub config)
 {
-	if (config.type_identifier_num < 8)
+	if (config.type_identifier_num < TYPE_IDENTIFIERS)
 		return (1);
 	else
 		return (0);
