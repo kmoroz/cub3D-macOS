@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/03 13:44:02 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/07/07 12:20:28 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/07/22 14:15:53 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int	ft_get_length_of_right_trim(char const *str, char const *set)
 
 	length_of_string = ft_strlen(str);
 	count = 0;
-	while (count >= 0)
+	while (count >= 0 && length_of_string)
 	{
 		if (ft_char_in_set(set, str[length_of_string - 1]) == 1)
 		{
