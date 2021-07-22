@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/08 13:15:43 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/07/22 11:22:30 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/07/22 16:26:21 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ typedef struct s_window_settings
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
-	int			*colour_buffer;
 }				t_window_settings;
 
 typedef struct s_player
@@ -118,7 +117,6 @@ typedef struct s_wall
 typedef struct s_texture
 {
 	void	*img;
-	int		*colour_buffer;
 	int		img_width;
 	int		img_height;
 	char	*addr;
@@ -214,7 +212,6 @@ void	count_type_identifiers(t_cub *config, char *line);
 void	is_texture_provided(t_cub config);
 void	check_map(t_cub config);
 void	check_player(t_cub config);
-int		is_map_on_top(t_cub config);
 int		is_zero_open(t_cub config, int x, int y);
 int		is_line_last(t_cub config);
 void	swap_sprites(t_sprite *sprite, int i, int j);
