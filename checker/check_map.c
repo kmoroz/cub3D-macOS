@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/09 11:43:53 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/07/05 09:23:40 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/07/22 14:31:13 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	is_char_open(t_cub config, int x, int y)
 			ft_error(MAP_INVALID);
 		if (current_row == previous_row || current_row == y + 1)
 		{
-			if (!config.map->row[x] || ft_isspace(config.map->row[x]))
+			if (ft_isspace(config.map->row[x]) || !ft_strlen(config.map->row))
 				ft_error(MAP_INVALID);
 		}
 		if (current_row == y)
@@ -88,7 +88,7 @@ void	is_map_closed(t_cub config)
 	temp = config.map;
 	while (temp)
 	{
-		while ((temp->row[x]))
+		while (temp->row[x])
 		{
 			if (ft_strchr("02NSWE", temp->row[x]))
 				is_char_open(config, x, y);
