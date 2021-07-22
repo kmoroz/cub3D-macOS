@@ -1,6 +1,22 @@
 #include "../cub3d.h"
 
-int	parse_wall_texture(t_cub *game_config, char *line)
+void	parse_east_west(t_cub *game_config, char *location, char first_char)
+{
+	if (first_char == 'W')
+		game_config->we_texture = location;
+	if (first_char == 'E')
+		game_config->ea_texture = location;
+}
+
+void	parse_north_south(t_cub *game_config, char *location, char first_char)
+{
+	if (first_char == 'N')
+		game_config->no_texture = location;
+	if (first_char == 'S')
+		game_config->so_texture = location;
+}
+
+void	parse_wall_texture(t_cub *game_config, char *line)
 {
 	char	first_char;
 	char	*location;
@@ -9,27 +25,25 @@ int	parse_wall_texture(t_cub *game_config, char *line)
 		|| ft_strnstr(line, "WE ", 3) || ft_strnstr(line, "EA ", 3))
 	{
 		first_char = *line;
-		line += 3;
-		while (!ft_isspace(*line) && *line)
+		line += 2;
+		while (*line)
 		{
-			location = ft_strdup(line);
-			if (!location)
-				ft_error(MALLOC);
-			if (first_char == 'N')
-				game_config->no_texture = location;
-			if (first_char == 'S')
-				game_config->so_texture = location;
-			if (first_char == 'W')
-				game_config->we_texture = location;
-			if (first_char == 'E')
-				game_config->ea_texture = location;
-			return (OK);
+			if (ft_isspace(*line))
+				line++;
+			else
+			{
+				location = ft_strdup(line);
+				if (!location)
+					ft_error(MALLOC);
+				parse_east_west(game_config, location, first_char);
+				parse_north_south(game_config, location, first_char);
+				return ;
+			}
 		}
 	}
-	return (OK);
 }
 
-int	parse_sprite_texture(t_cub *game_config, char *line)
+void	parse_sprite_texture(t_cub *game_config, char *line)
 {
 	char	*location;
 
@@ -46,9 +60,8 @@ int	parse_sprite_texture(t_cub *game_config, char *line)
 				if (!location)
 					ft_error(MALLOC);
 				game_config->sp_texture = location;
-				return (OK);
+				return ;
 			}
 		}
 	}
-	return (OK);
 }

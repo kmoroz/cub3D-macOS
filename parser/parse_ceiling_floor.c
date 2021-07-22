@@ -10,6 +10,8 @@ void	parse_floor_colour(t_cub *game_config, char *line)
 		index = 0;
 		while (line && index < 3)
 		{
+			while (ft_isspace(*line))
+				line++;
 			while (ft_isdigit(*line) && *line != ',')
 			{
 				if (game_config->floor_colour[index] == -1)
@@ -36,6 +38,8 @@ void	parse_ceiling_colour(t_cub *game_config, char *line)
 		index = 0;
 		while (line && index < 3)
 		{
+			while (ft_isspace(*line))
+				line++;
 			while (ft_isdigit(*line) && *line != ',')
 			{
 				if (game_config->ceiling_colour[index] == -1)

@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/08 13:09:14 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/07/08 16:25:12 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/07/22 15:54:01 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,7 @@ void	parse_map(t_cub *game_config, char *line)
 		}
 		current = game_config->map;
 		while (current->next)
-		{
 			current = current->next;
-		}
 		current->next = ft_lstnew(line);
 		if (!current->next)
 			ft_error(MALLOC);
@@ -101,8 +99,7 @@ void	parse_file(char *file, t_cub *game_config)
 		trimmed_line = ft_strtrim(line, " ");
 		count_type_identifiers(game_config, trimmed_line);
 		parse_type_identifiers(game_config, trimmed_line);
-		if (game_config->type_identifier_num == 8)
-			parse_map(game_config, line);
+		parse_map(game_config, line);
 		free(line);
 		free(trimmed_line);
 	}
