@@ -34,10 +34,8 @@ void	ft_error(int error_code)
 		printf("Error\n\U0001f4a9 Max RGB value exceeded \U0001f4a9\n");
 	if (error_code == ZERO_TEXTURE)
 		printf("Error\n\U0001f4a9 Texture path missing \U0001f4a9\n");
-	if (error_code == FEW_IDENTIFIERS)
-		printf("Error\n\U0001f4a9 Type identifier missing \U0001f4a9\n");
-	if (error_code == MANY_IDENTIFIERS)
-		printf("Error\n\U0001f4a9 Too many type identifiers \U0001f4a9\n");
+	if (error_code == IDENTIFIERS)
+		printf("Error\n\U0001f4a9 Incorrect number of identifiers \U0001f4a9\n");
 	map_error(error_code);
-	exit(0);
+	exit(1);
 }
