@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/08 13:15:43 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/07/21 14:46:47 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/07/22 11:22:30 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@
 # define ERROR -1
 # define OK 1
 # define EPSILON 0.2
+# define TYPE_IDENTIFIERS 6
 
 enum	e_error
 {
@@ -62,8 +63,7 @@ enum	e_error
 	MAP_INVALID = 11,
 	RGB_EXCEEDED = 12,
 	ZERO_TEXTURE = 13,
-	MANY_IDENTIFIERS = 14,
-	FEW_IDENTIFIERS = 15,
+	IDENTIFIERS = 14,
 } t_error;
 
 typedef struct s_cub
@@ -240,8 +240,8 @@ void	check_config_file(t_cub config);
 void	check_allowed_chars(t_cub config);
 void	parse_floor_colour(t_cub *game_config, char *line);
 void	parse_ceiling_colour(t_cub *game_config, char *line);
-int		parse_sprite_texture(t_cub *game_config, char *line);
-int		parse_wall_texture(t_cub *game_config, char *line);
+void	parse_sprite_texture(t_cub *game_config, char *line);
+void	parse_wall_texture(t_cub *game_config, char *line);
 void	draw_a_circle(t_window_settings *window, float x, float y, int colour);
 void	is_rgb_present(t_cub config);
 int		veirify_resolution_input(char c);
@@ -249,5 +249,6 @@ void	ft_error(int error_code);
 int		is_type_identifier_allowed(char *line);
 void	does_file_exist(t_cub config);
 int		free_everything(t_settings *settings);
+void	check_resolution(t_cub *config);
 
 #endif
