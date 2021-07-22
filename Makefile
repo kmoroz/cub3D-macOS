@@ -6,7 +6,7 @@
 #    By: ksmorozo <ksmorozo@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/02/24 11:23:42 by ksmorozo      #+#    #+#                  #
-#    Updated: 2021/07/08 18:19:21 by ksmorozo      ########   odam.nl          #
+#    Updated: 2021/07/22 16:27:34 by ksmorozo      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,6 +74,8 @@ $(NAME): $(OBJ)
 
 %.o: %.c $(HEADER)
 	gcc $(CFLAGS) -c $< -o $@
+
+bonus: $(NAME)
 
 clean:
 	rm -f $(OBJ) $(MINILIBX)
