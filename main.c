@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/14 17:53:04 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/07/21 14:50:16 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/07/21 15:12:39 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_window_settings	set_up_window(t_cub *config)
 
 	window.mlx = mlx_init();
 	verify_max_screen_size(window, config);
+	check_resolution(config);
 	window.window = mlx_new_window(window.mlx,
 			config->x_res, config->y_res, "cub3D");
 	window.img = mlx_new_image(window.mlx,

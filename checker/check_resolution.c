@@ -21,3 +21,14 @@ int	veirify_resolution_input(char c)
 		return (ERROR);
 	return (OK);
 }
+
+void	check_resolution(t_cub *config)
+{
+	if (config->x_res == 0 && config->y_res == 0)
+	{
+		config->x_res = 800;
+		config->y_res = 500;
+	}
+	if (config->x_res == 0 || config->y_res == 0)
+		ft_error(ZERO_RES);
+}
