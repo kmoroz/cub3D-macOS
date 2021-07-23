@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/08 13:09:14 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/07/22 15:54:01 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/07/23 11:39:53 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include <fcntl.h>
 #include <stddef.h>
 #include "../get_next_line/get_next_line.h"
-#include <stdio.h>
 #include <stdlib.h>
 
 void	parse_res(t_cub *game_config, char *line)
@@ -52,8 +51,6 @@ void	parse_map(t_cub *game_config, char *line)
 	{
 		if (!game_config->map)
 		{
-			if (is_map_on_top(*game_config) && *line)
-				ft_error(MAP_ON_TOP);
 			if (*line)
 				game_config->map = ft_lstnew(line);
 			if (*line && !game_config->map)
@@ -99,7 +96,8 @@ void	parse_file(char *file, t_cub *game_config)
 		trimmed_line = ft_strtrim(line, " ");
 		count_type_identifiers(game_config, trimmed_line);
 		parse_type_identifiers(game_config, trimmed_line);
-		parse_map(game_config, line);
+		if (game_config->type_identifier_num == TYPE_IDENTIFIERS)
+			parse_map(game_config, line);
 		free(line);
 		free(trimmed_line);
 	}
