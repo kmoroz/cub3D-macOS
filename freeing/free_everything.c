@@ -26,8 +26,13 @@ void	free_texture(t_settings *settings, t_texture *texture)
 	free(settings->config->no_texture);
 	free(settings->config->so_texture);
 	free(settings->config->we_texture);
-	free(settings->config->sp_texture);
-	while (count < NUM_TEXTURES)
+	if (settings->config->contains_sprites)
+	{
+		free(settings->config->sp_texture);
+		mlx_destroy_image(settings->window->mlx, texture[SPRITE_TEXTURE].img);
+		mlx_destroy_image(settings->window->mlx, texture[ANIMATION_TEX].img);
+	}
+	while (count < NUM_TEXTURES - 2)
 	{
 		mlx_destroy_image(settings->window->mlx, texture[count].img);
 		count++;

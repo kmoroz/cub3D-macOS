@@ -4,8 +4,9 @@
 void	is_texture_provided(t_cub config)
 {
 	if (!config.ea_texture || !config.no_texture
-		|| !config.so_texture || !config.we_texture
-		|| !config.sp_texture)
+		|| !config.so_texture || !config.we_texture)
+		ft_error(ZERO_TEXTURE);
+	if (!config.sp_texture && config.contains_sprites)
 		ft_error(ZERO_TEXTURE);
 }
 
@@ -56,5 +57,6 @@ void	does_file_exist(t_cub config)
 {
 	check_east_west(config);
 	check_north_south(config);
-	check_sprite(config);
+	if (config.contains_sprites)
+		check_sprite(config);
 }

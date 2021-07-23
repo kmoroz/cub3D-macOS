@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/20 11:49:57 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/06/28 11:20:27 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/07/23 09:44:23 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,7 @@ void	load_textures(t_settings *settings)
 {
 	load_north_south_texture(settings);
 	load_west_east_texture(settings);
-	load_sprite_texture(settings);
+	contains_sprites(settings->config);
+	if (settings->config->contains_sprites)
+		load_sprite_texture(settings);
 }
