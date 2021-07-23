@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/14 18:47:56 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/07/21 14:47:08 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/07/23 11:01:24 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 int	x_button_hook(t_settings *settings)
 {
-	printf("\n\U0000274C Red cross pressed. Game terminated. \U0000274C");
+	printf("\n\U0000274C Red cross pressed. Game terminated.\U0000274C\n");
 	exit(free_everything(settings));
 	return (0);
 }
@@ -27,7 +27,10 @@ int	x_button_hook(t_settings *settings)
 int	key_press_handler(int keycode, t_settings *settings)
 {
 	if (keycode == KEY_ESC)
+	{
+		printf("\n\U00002B1B Esc pressed. Thanks for playing!\U00002B1B\n");
 		exit(free_everything(settings));
+	}
 	else if (keycode == KEY_A)
 		settings->game->player->sidewalk = 1;
 	else if (keycode == KEY_D)
