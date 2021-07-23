@@ -58,3 +58,29 @@ int	is_map_on_top(t_cub config)
 	else
 		return (0);
 }
+
+void	contains_sprites(t_cub *config)
+{
+	int		x;
+	int		y;
+	t_list	*temp;
+
+	x = 0;
+	y = 0;
+	temp = config->map;
+	while (temp)
+	{
+		while ((temp->row[x]))
+		{
+			if (ft_strchr("2", temp->row[x]))
+			{
+				config->contains_sprites = 1;
+				break ;
+			}
+			x++;
+		}
+		temp = temp->next;
+		y++;
+		x = 0;
+	}
+}

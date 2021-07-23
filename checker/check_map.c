@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/09 11:43:53 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/07/22 14:31:13 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/07/23 11:41:02 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,19 +51,18 @@ void	check_blank_lines_in_map(t_cub config)
 void	is_char_open(t_cub config, int x, int y)
 {
 	int	current_row;
-	int	previous_row;
 
 	current_row = 0;
-	previous_row = y - 1;
-	if (previous_row < 0)
+	if (y - 1 < 0)
 		ft_error(MAP_INVALID);
 	while (current_row <= y + 1)
 	{
 		if (!config.map)
 			ft_error(MAP_INVALID);
-		if (current_row == previous_row || current_row == y + 1)
+		if (current_row == y - 1 || current_row == y + 1)
 		{
-			if (ft_isspace(config.map->row[x]) || !ft_strlen(config.map->row))
+			if (ft_isspace(config.map->row[x]) || !ft_strlen(config.map->row)
+				|| !config.map->row[x])
 				ft_error(MAP_INVALID);
 		}
 		if (current_row == y)
@@ -102,6 +101,8 @@ void	is_map_closed(t_cub config)
 
 void	check_map(t_cub config)
 {
+	if (!config.map)
+		ft_error(MAP_ON_TOP);
 	check_blank_lines_in_map(config);
 	is_map_closed(config);
 	check_allowed_chars(config);
