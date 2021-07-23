@@ -38,10 +38,11 @@ void	verify_num_of_type_identifiers(t_cub config)
 void	check_config_file(t_cub config)
 {
 	verify_num_of_type_identifiers(config);
-	check_player(config);
 	check_map(config);
+	check_player(config);
 	check_max_rgb_value(config);
 	check_resolution(&config);
+	contains_sprites(&config);
 	is_texture_provided(config);
 	is_rgb_present(config);
 	does_file_exist(config);

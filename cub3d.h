@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/08 13:15:43 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/07/22 16:26:21 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/07/23 09:09:19 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ typedef struct s_cub
 	int			ceiling_colour[3];
 	int			type_identifier_num;
 	t_list		*map;
+	int			contains_sprites;
 }				t_cub;
 
 typedef struct s_window_settings
@@ -247,5 +248,6 @@ int		is_type_identifier_allowed(char *line);
 void	does_file_exist(t_cub config);
 int		free_everything(t_settings *settings);
 void	check_resolution(t_cub *config);
+void	contains_sprites(t_cub *config);
 
 #endif
