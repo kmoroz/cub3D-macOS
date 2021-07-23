@@ -18,6 +18,7 @@ void	init_texture_path(t_cub *config)
 	config->ceiling_colour[2] = -1;
 	config->map = 0;
 	config->type_identifier_num = 0;
+	config->contains_sprites = 0;
 }
 
 void	init_config(t_settings *settings, t_cub *config)
