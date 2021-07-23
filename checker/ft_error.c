@@ -11,7 +11,7 @@ void	map_error(int error_code)
 	if (error_code == MAP_ON_TOP)
 	{
 		printf("Error\n\U0001f4a9 Map on top ");
-		printf("OR wrong number of identifiers \U0001f4a9\n");
+		printf("OR doesn't exist \U0001f4a9\n");
 	}
 }
 
