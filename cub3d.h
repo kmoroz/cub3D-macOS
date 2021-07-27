@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/08 13:15:43 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/07/27 14:41:36 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/07/27 15:12:23 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,6 @@
 # include <math.h>
 # include <stdint.h>
 
-/*
-** Keyboard
-*/
-
 # define KEY_A 0 //97
 # define KEY_W 13 //119
 # define KEY_S 1 //115
@@ -28,8 +24,6 @@
 # define KEY_ESC 53 //65307
 # define KEY_LEFT 123 //65361
 # define KEY_RIGHT 124 //65363
-# define KEY_UP 65362
-# define KEY_DOWN 65364
 # define PI 3.14159265
 # define TWO_PI 6.28318530
 # define FOV_ANGLE 1.0471975500000001
