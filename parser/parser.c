@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/08 13:09:14 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/07/23 11:39:53 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/07/27 14:40:42 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ void	parse_file(char *file, t_cub *game_config)
 	char	*trimmed_line;
 
 	fd = open(file, O_RDONLY);
+	if (fd == -1)
+		ft_error(OPEN_ERROR);
 	line_status = 1;
 	while (line_status)
 	{

@@ -13,6 +13,10 @@ void	map_error(int error_code)
 		printf("Error\n\U0001f4a9 Map on top ");
 		printf("OR doesn't exist \U0001f4a9\n");
 	}
+	if (error_code == OPEN_ERROR)
+		printf("Error\n\U0001f4a9 Failed to open file \U0001f4a9\n");
+	if (error_code == MLX_ERROR)
+		printf("Error\n\U0001f4a9 MLX error \U0001f4a9\n");
 }
 
 void	ft_error(int error_code)
