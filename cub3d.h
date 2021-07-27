@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/08 13:15:43 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/07/23 09:09:19 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/07/27 11:27:00 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -249,5 +249,7 @@ void	does_file_exist(t_cub config);
 int		free_everything(t_settings *settings);
 void	check_resolution(t_cub *config);
 void	contains_sprites(t_cub *config);
+void	check_minimap_max_width_height(t_cub *config,
+			int *max_width, int *max_height);
 
 #endif

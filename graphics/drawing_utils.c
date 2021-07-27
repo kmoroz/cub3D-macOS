@@ -57,3 +57,23 @@ void	draw_a_circle(t_window_settings *window, float x, float y, int colour)
 		i += 0.1;
 	}
 }
+
+void	check_minimap_max_width_height(t_cub *config,
+	int *max_width, int *max_height)
+{
+	t_list	*temp;
+
+	*max_width = 0;
+	*max_height = 0;
+	temp = config->map;
+	while (temp)
+	{
+		if ((int)ft_strlen(temp->row) > *max_width)
+			*max_width = ft_strlen(temp->row);
+		if (ft_strlen(temp->row))
+			*max_height = *max_height + 1;
+		temp = temp->next;
+	}
+	*max_width *= TILE_SIZE * SCALE_FACTOR;
+	*max_height *= TILE_SIZE * SCALE_FACTOR;
+}

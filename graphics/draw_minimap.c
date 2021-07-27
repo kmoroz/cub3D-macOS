@@ -76,7 +76,13 @@ void	draw_line(t_settings *settings)
 
 void	draw_minimap_components(t_settings *settings)
 {
-	if (settings->config->x_res >= 400 && settings->config->y_res >= 400)
+	int	max_width;
+	int	max_height;
+
+	check_minimap_max_width_height(settings->config, &max_width, &max_height);
+	if ((settings->config->x_res >= 400 && settings->config->y_res >= 400)
+		&& (settings->config->x_res > max_width
+			&& settings->config->y_res > max_height))
 	{
 		draw_minimap_sprite(settings);
 		draw_line(settings);
