@@ -6,7 +6,7 @@
 /*   By: ksmorozo <ksmorozo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/08 13:15:43 by ksmorozo      #+#    #+#                 */
-/*   Updated: 2021/07/27 11:27:00 by ksmorozo      ########   odam.nl         */
+/*   Updated: 2021/07/27 14:41:36 by ksmorozo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ enum	e_error
 	RGB_EXCEEDED = 12,
 	ZERO_TEXTURE = 13,
 	IDENTIFIERS = 14,
+	OPEN_ERROR = 15,
+	MLX_ERROR = 16,
 } t_error;
 
 typedef struct s_cub
