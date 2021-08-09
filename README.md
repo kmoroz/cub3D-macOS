@@ -6,7 +6,7 @@
 
 ## 📜 Game Configuration
 
-It is nececcary to provide a `.cub` file to compile the game. It contains the following information:
+It is necessary to provide a `.cub` file to compile the game. It contains the following information:
 
 ### ❕ Mandatory Part
 
