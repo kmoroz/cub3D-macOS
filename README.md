@@ -34,3 +34,6 @@ Run the following in the root directory:
 2. ``./cub3D map.cub``
 3. ????
 4. PROFIT!!!
+
+## 🍄 Game Demo
+![cub3D](readme.gif)
